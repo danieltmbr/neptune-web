@@ -35,7 +35,14 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
           }
         }}
       >
-        <h4 className="m-b-1">{title}</h4>
+        <span
+          className={classNames({
+            h5: size === Tile.Size.SMALL,
+            h4: size !== Tile.Size.SMALL,
+          })}
+        >
+          {title}
+        </span>
       </a>
       <div className="tw-tile__content">{content}</div>
     </div>
