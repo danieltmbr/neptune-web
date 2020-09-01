@@ -24,7 +24,6 @@ export const basic = () => {
       onCurrencyChange={action('currency changed')}
       addon={null}
       placeholder={placeholder}
-      searchPlaceholder="Type a currency or country"
       onCustomAction={action('Custom action')}
       customActionLabel="Custom action label"
       currencies={[

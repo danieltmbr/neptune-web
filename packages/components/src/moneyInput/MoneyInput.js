@@ -32,7 +32,6 @@ export default class MoneyInput extends Component {
     onAmountChange: Types.func,
     locale: Types.string,
     addon: Types.node,
-    searchPlaceholder: Types.string,
     customActionLabel: Types.node,
     onCustomAction: Types.func,
     classNames: Types.objectOf(Types.string),
@@ -43,7 +42,6 @@ export default class MoneyInput extends Component {
     size: 'lg',
     locale: 'en-GB',
     addon: null,
-    searchPlaceholder: '',
     onCurrencyChange: null,
     placeholder: null,
     amount: null,
@@ -222,8 +220,6 @@ export default class MoneyInput extends Component {
               options={selectOptions}
               selected={{ ...selectedCurrency, note: null }}
               onChange={this.handleSelectChange}
-              placeholder="Select an option..."
-              searchPlaceholder={this.props.searchPlaceholder}
               onSearchChange={(searchQuery) => this.setState({ searchQuery })}
               searchValue={this.state.searchQuery}
               size={size}

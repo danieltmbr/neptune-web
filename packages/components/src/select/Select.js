@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import Types from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
+import { LocaleContext } from '../locale/index';
 
 import Option from './option';
 import KeyCodes from '../common/keyCodes';
@@ -58,9 +59,8 @@ const defaultFilterFunction = (option, keyword) =>
   (option.currency && includesString(option.currency, keyword)) ||
   (option.searchStrings && arrayIncludesString(option.searchStrings, keyword));
 
-export default class Select extends Component {
+class Select extends Component {
   static propTypes = {
-    placeholder: Types.string,
     id: Types.string,
     required: Types.bool,
     disabled: Types.bool,
@@ -106,14 +106,12 @@ export default class Select extends Component {
      */
     onSearchChange: Types.func,
     searchValue: Types.string,
-    searchPlaceholder: Types.string,
     classNames: Types.objectOf(Types.string),
     dropdownUp: Types.bool,
   };
 
   static defaultProps = {
     id: undefined,
-    placeholder: undefined,
     size: 'md',
     dropdownRight: null,
     dropdownWidth: null,
@@ -127,7 +125,6 @@ export default class Select extends Component {
     onSearchChange: undefined,
     search: false,
     searchValue: '',
-    searchPlaceholder: 'Search...',
     classNames: {},
     dropdownUp: false,
   };
@@ -374,14 +371,8 @@ export default class Select extends Component {
   style = (className) => this.props.classNames[className] || className;
 
   renderOptionsList() {
-    const {
-      dropdownRight,
-      dropdownWidth,
-      onSearchChange,
-      placeholder,
-      required,
-      search,
-    } = this.props;
+    const locale = this.context;
+    const { dropdownRight, dropdownWidth, onSearchChange, required, search } = this.props;
     const { open, shouldRenderWithPortal } = this.state;
     const s = this.style;
 
@@ -395,7 +386,7 @@ export default class Select extends Component {
 
     const list = (
       <ul className={dropdownClass} role="menu">
-        {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
+        {!required && !canSearch && locale.select.placeholder ? this.renderPlaceHolderOption() : ''}
         {canSearch ? this.renderSearchBox() : ''}
         {this.renderOptions()}
       </ul>
@@ -413,7 +404,9 @@ export default class Select extends Component {
   }
 
   renderSearchBox() {
-    const { searchValue, searchPlaceholder } = this.props;
+    const locale = this.context;
+
+    const { searchValue } = this.props;
     return (
       <li className={this.style('tw-dropdown-item--divider')}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -425,7 +418,7 @@ export default class Select extends Component {
             <input
               type="text"
               className={`${this.style('tw-select-filter')} ${this.style('form-control')}`}
-              placeholder={searchPlaceholder}
+              placeholder={locale.select.searchPlaceholder}
               onChange={this.handleSearchChange}
               onClick={stopPropagation}
               value={searchValue || this.state.searchValue}
@@ -439,7 +432,7 @@ export default class Select extends Component {
   }
 
   renderPlaceHolderOption() {
-    const { placeholder } = this.props;
+    const { placeholder } = this.context.select;
     return (
       /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
@@ -504,7 +497,8 @@ export default class Select extends Component {
   };
 
   renderButtonInternals() {
-    const { selected, placeholder } = this.props;
+    const { selected } = this.props;
+    const { placeholder } = this.context.select;
     if (selected) {
       return <Option {...selected} classNames={this.props.classNames} selected />;
     }
@@ -590,3 +584,6 @@ export default class Select extends Component {
     );
   }
 }
+
+Select.contextType = LocaleContext;
+export default Select;

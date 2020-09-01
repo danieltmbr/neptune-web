@@ -19,7 +19,6 @@ export const basic = () => {
   const dropdownRight = select('dropdownRight', ['xs', 'sm', 'md', 'lg', 'xl'], 'md');
   const dropdownWidth = select('dropdownWidth', ['sm', 'md', 'lg'], 'md');
 
-  const placeholder = text('placeholder', 'Placeholder text');
   const inverse = boolean('inverse', false);
   const block = boolean('block', true);
   const required = boolean('required', false);
@@ -30,7 +29,6 @@ export const basic = () => {
   return (
     <Select
       size={size}
-      placeholder={placeholder}
       dropdownRight={dropdownRight}
       dropdownWidth={dropdownWidth}
       inverse={inverse}
@@ -40,7 +38,6 @@ export const basic = () => {
       search={search}
       onChange={(v) => setSelected(v)}
       required={required}
-      searchPlaceholder="Search placeholder"
       dropdownUp={dropdownUp}
       options={[
         { header: 'Basic' },
@@ -88,7 +85,6 @@ export const customSearchFunction = () => {
   return (
     <Select
       size={size}
-      placeholder={placeholder}
       dropdownRight={dropdownRight}
       dropdownWidth={dropdownWidth}
       inverse={inverse}
@@ -103,7 +99,6 @@ export const customSearchFunction = () => {
       }
       onChange={(v) => setSelected(v)}
       required={required}
-      searchPlaceholder="Search placeholder"
       dropdownUp={dropdownUp}
       options={[
         { header: 'Popular currencies' },
@@ -190,7 +185,6 @@ export const advancedSearch = () => {
   const dropdownRight = select('dropdownRight', ['xs', 'sm', 'md', 'lg', 'xl'], 'md');
   const dropdownWidth = select('dropdownWidth', ['sm', 'md', 'lg'], 'md');
 
-  const placeholder = text('placeholder', 'placeholder');
   const inverse = boolean('inverse', false);
   const block = boolean('block', true);
   const required = boolean('required', false);
@@ -200,7 +194,6 @@ export const advancedSearch = () => {
   return (
     <Select
       size={size}
-      placeholder={placeholder}
       dropdownRight={dropdownRight}
       dropdownWidth={dropdownWidth}
       inverse={inverse}
@@ -210,7 +203,6 @@ export const advancedSearch = () => {
       onChange={(v) => setSelected(v)}
       required={required}
       searchValue={searchValue}
-      searchPlaceholder="searchplaceholder"
       onSearchChange={(v) => setSearchValue(v)}
       dropdownUp={dropdownUp}
       options={[
