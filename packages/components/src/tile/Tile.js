@@ -12,7 +12,7 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
     <div
       className={classNames('tw-tile', className, {
         'tw-tile--small p-a-2': size === Tile.Size.SMALL,
-        'tw-tile--large p-a-3': size !== Tile.Size.SMALL,
+        'tw-tile--large p-x-5 p-y-4': size !== Tile.Size.SMALL,
       })}
     >
       <div className="m-y-2 m-x-auto">{media}</div>
