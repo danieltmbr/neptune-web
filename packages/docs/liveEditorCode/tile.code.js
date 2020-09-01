@@ -1,5 +1,3 @@
-const { default: Tile } = require('../../components/src/tile');
-
 () => (
   <Tile
     media={
