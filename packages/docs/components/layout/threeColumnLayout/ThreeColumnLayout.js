@@ -5,7 +5,7 @@ import Box from '../box';
 
 const Direction = { default: 'row', xs: 'row', sm: 'row', md: 'row', lg: 'row' };
 
-const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
+const ThreeColumns = ({ mobileContent, firstContent, secondContent, thirdContent }) => {
   return (
     <Flex
       direction={Direction}
@@ -15,6 +15,20 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
       marginY={0}
       className="PageLayout__Inner"
     >
+      <Box
+        size={{
+          default: 1,
+          xs: 1,
+          sm: 1,
+          md: 1,
+          lg: 1,
+          xl: 0,
+        }}
+        justifyContent="flex-start"
+        alignItems="flex-start"
+      >
+        {mobileContent}
+      </Box>
       {firstContent && (
         <Box
           size={{

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
+import { Button, SlidingPanel } from '@transferwise/components';
 import Link from './Link';
+import Box from './layout/box';
+import Flex from './layout/flex';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
@@ -12,6 +15,7 @@ import ThreeColumnLayout from './layout/threeColumnLayout';
 const githubURL = `https://github.com/transferwise/neptune-web/edit/main/packages/docs/pages`;
 
 const Layout = ({ children, router: { pathname } }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathParts = pathname.split('/');
   const rootDir = pathParts[1];
   const page = getPageFromPath(pathname);
@@ -58,8 +62,50 @@ const Layout = ({ children, router: { pathname } }) => {
     </div>
   );
 
+  const mobileContent = (
+    <>
+      {!menuOpen && <Button onClick={() => setMenuOpen(true)}>Open menu</Button>}
+      <SlidingPanel open={menuOpen} position="left">
+        <Flex marginX={0} paddingX={0} paddingY={0} marginY={0} className="PageLayout__Inner">
+          <Box
+            size={{
+              default: 0,
+              xs: 0,
+              sm: 0,
+              md: 0,
+              lg: 200,
+              xl: 200,
+            }}
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            tagHtml="header"
+            className="Header"
+          >
+            {firstContent}
+          </Box>
+          <Box
+            size={{
+              default: 0,
+              xs: 0,
+              sm: 220,
+              md: 220,
+              lg: 220,
+              xl: 220,
+            }}
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            className="Sidebar"
+          >
+            {secondContent}
+          </Box>
+        </Flex>
+      </SlidingPanel>
+    </>
+  );
+
   return (
     <ThreeColumnLayout
+      mobileContent={mobileContent}
       firstContent={firstContent}
       secondContent={secondContent}
       thirdContent={thirdContent}
