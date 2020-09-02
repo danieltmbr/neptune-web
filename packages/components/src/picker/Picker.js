@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ElementQueries from 'css-element-queries/src/ElementQueries';
@@ -9,11 +9,19 @@ import Tile from '../tile';
 
 import './Picker.css';
 
-ElementQueries.listen();
-
 const Picker = ({ className, items, onClick, small }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    ElementQueries.listen();
+    ElementQueries.init();
+    return () => {
+      if (ref.current) {
+        ElementQueries.detach(ref.current);
+      }
+    };
+  }, []);
   return (
-    <div className={classNames('tw-picker', className)}>
+    <div className={classNames('tw-picker', className)} ref={ref}>
       <div className="tw-picker__tile-container p-x-2">
         {items.map(({ title, content, media, key }) => (
           <Tile
@@ -40,7 +48,6 @@ const Picker = ({ className, items, onClick, small }) => {
           />
         ))}
       </NavigationOptionList>
-      {ElementQueries.init()}
     </div>
   );
 };
