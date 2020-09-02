@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { Button, SlidingPanel } from '@transferwise/components';
 import Link from './Link';
-import Box from './layout/box';
-import Flex from './layout/flex';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
@@ -16,6 +14,7 @@ const githubURL = `https://github.com/transferwise/neptune-web/edit/main/package
 
 const Layout = ({ children, router: { pathname } }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen2, setMenuOpen2] = useState(false);
   const pathParts = pathname.split('/');
   const rootDir = pathParts[1];
   const page = getPageFromPath(pathname);
@@ -32,12 +31,18 @@ const Layout = ({ children, router: { pathname } }) => {
           <span className="sr-only">TransferWise</span>
         </a>
       </Link>
+
       <ul className="Nav Nav--dark">
         <li className="Nav__Group">Neptune</li>
         {sections.map((section) => (
           <li key={section.title}>
             <Link href={getFirstPageInSection(section).path}>
-              <a className={`Nav__Link ${rootDir === section.dir ? 'active' : ''}`}>
+              <a
+                className={`Nav__Link ${rootDir === section.dir ? 'active' : ''}`}
+                onClick={() => {
+                  setMenuOpen2(true);
+                }}
+              >
                 {section.title}
               </a>
             </Link>
@@ -48,7 +53,14 @@ const Layout = ({ children, router: { pathname } }) => {
   );
 
   const secondContent = page && (
-    <Sidebar section={sections.find((section) => section.dir === rootDir)} />
+    <Sidebar
+      section={sections.find((section) => section.dir === rootDir)}
+      onBackClick={() => setMenuOpen2(false)}
+      onClick={() => {
+        setMenuOpen2(false);
+        setMenuOpen(false);
+      }}
+    />
   );
 
   const thirdContent = (
@@ -63,44 +75,37 @@ const Layout = ({ children, router: { pathname } }) => {
   );
 
   const mobileContent = (
-    <>
-      {!menuOpen && <Button onClick={() => setMenuOpen(true)}>Open menu</Button>}
-      <SlidingPanel open={menuOpen} position="left">
-        <Flex marginX={0} paddingX={0} paddingY={0} marginY={0} className="PageLayout__Inner">
-          <Box
-            size={{
-              default: 0,
-              xs: 0,
-              sm: 0,
-              md: 0,
-              lg: 200,
-              xl: 200,
-            }}
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            tagHtml="header"
-            className="Header"
-          >
-            {firstContent}
-          </Box>
-          <Box
-            size={{
-              default: 0,
-              xs: 0,
-              sm: 220,
-              md: 220,
-              lg: 220,
-              xl: 220,
-            }}
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            className="Sidebar"
-          >
-            {secondContent}
-          </Box>
-        </Flex>
+    <div className="Mobile_Menu">
+      {!menuOpen ? (
+        <button
+          className="navbar-toggle collapsed visible-sm-inline-block visible-md-inline-block"
+          onClick={() => setMenuOpen(!menuOpen)}
+          data-toggle="collapse"
+          aria-expanded="false"
+          type="button"
+        >
+          <span className="sr-only">Toggle navigation</span>
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="navbar-toggle close visible-sm-inline-block visible-md-inline-block"
+          onClick={() => {
+            setMenuOpen(false);
+            setMenuOpen2(false);
+          }}
+        >
+          ×
+        </button>
+      )}
+      <SlidingPanel open={menuOpen}>
+        <div className="Header">{firstContent}</div>
+        <SlidingPanel open={menuOpen2}>{secondContent}</SlidingPanel>
       </SlidingPanel>
-    </>
+    </div>
   );
 
   return (

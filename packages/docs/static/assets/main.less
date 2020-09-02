@@ -74,6 +74,37 @@ p + h2[id] {
   font-size: @font-size-small;
 }
 
+@media (max-width: 991px) {
+  .Mobile_Menu {
+    .Header {
+      width: 220px;
+    }
+    .Header__Fixed {
+      position: relative;
+    }
+    .Sidebar__Fixed {
+      width: 220px;
+      position: relative;
+    }
+    .Sidebar__Header {
+      display: flex;
+      align-items: center;
+      svg {
+        margin-top: 4px;
+      }
+    }
+    .Sidebar__Title {
+      display: inline-block;
+    }
+    .navbar-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1040;
+    }
+  }
+}
+
 @media (min-width: 767px) {
   .Sidebar__Search {
     font-size: @font-size-small--desktop;

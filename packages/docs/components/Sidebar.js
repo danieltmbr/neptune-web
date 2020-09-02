@@ -5,7 +5,7 @@ import Link from './Link';
 
 import { getPagesInSection } from '../utils/pageUtils';
 
-const getLinks = ({ pathname, section }) => {
+const getLinks = ({ pathname, section, onClick }) => {
   return getPagesInSection(section).map(({ group, component, path }, index) => {
     const key = index.toString();
     if (group) {
@@ -24,7 +24,7 @@ const getLinks = ({ pathname, section }) => {
       content: (
         <li key={key}>
           <Link href={path}>
-            <a className={`Nav__Link ${isSelected ? 'active' : ''}`}>
+            <a className={`Nav__Link ${isSelected ? 'active' : ''}`} onClick={onClick}>
               {name} {component.meta.isPlaceholder && '*'}
               {component.meta.isBeta && <span className="badge badge-success">beta</span>}
             </a>
@@ -36,7 +36,7 @@ const getLinks = ({ pathname, section }) => {
   });
 };
 
-const Sidebar = ({ router: { pathname }, section }) => {
+const Sidebar = ({ router: { pathname }, section, onClick, onBackClick }) => {
   const [links, updateLinks] = useState([]);
   const [filteredLinks, updateFilteredLinks] = useState('');
 
@@ -69,11 +69,11 @@ const Sidebar = ({ router: { pathname }, section }) => {
 
   useEffect(() => {
     updateSearchInput('');
-    updateLinks(getLinks({ pathname, section }));
+    updateLinks(getLinks({ pathname, section, onClick }));
   }, [section]);
 
   useEffect(() => {
-    updateLinks(getLinks({ pathname, section }));
+    updateLinks(getLinks({ pathname, section, onClick }));
   }, [pathname]);
 
   const handleKeyDown = (event) => {
@@ -91,6 +91,15 @@ const Sidebar = ({ router: { pathname }, section }) => {
   return (
     <div className="Sidebar__Fixed" role="navigation" aria-label="Secondary navigation">
       <div className="Sidebar__Header">
+        <button
+          onClick={onBackClick}
+          className="btn p-x-0 m-r-1 visible-xs-inline-block visible-sm-inline-block visible-md-inline-block "
+        >
+          <svg width="20" height="16" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+            <title>ICON: Back</title>
+            <path d="M0 8l8-8 1.5 1.5L4 7h16v2H4l5.5 5.5L8 16" fill="#00B9FF" fillRule="evenodd" />
+          </svg>
+        </button>
         <h5 className="Sidebar__Title">{section.title}</h5>
       </div>
       {section.searchable && (

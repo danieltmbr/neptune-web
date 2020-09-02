@@ -15,20 +15,8 @@ const ThreeColumns = ({ mobileContent, firstContent, secondContent, thirdContent
       marginY={0}
       className="PageLayout__Inner"
     >
-      <Box
-        size={{
-          default: 1,
-          xs: 1,
-          sm: 1,
-          md: 1,
-          lg: 1,
-          xl: 0,
-        }}
-        justifyContent="flex-start"
-        alignItems="flex-start"
-      >
-        {mobileContent}
-      </Box>
+      {mobileContent}
+
       {firstContent && (
         <Box
           size={{
@@ -36,8 +24,8 @@ const ThreeColumns = ({ mobileContent, firstContent, secondContent, thirdContent
             xs: 0,
             sm: 0,
             md: 0,
-            lg: 200,
-            xl: 200,
+            lg: 220,
+            xl: 220,
           }}
           justifyContent="flex-start"
           alignItems="flex-start"
@@ -52,8 +40,8 @@ const ThreeColumns = ({ mobileContent, firstContent, secondContent, thirdContent
           size={{
             default: 0,
             xs: 0,
-            sm: 220,
-            md: 220,
+            sm: 0,
+            md: 0,
             lg: 220,
             xl: 220,
           }}
