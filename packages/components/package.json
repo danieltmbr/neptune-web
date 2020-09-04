@@ -20,7 +20,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:watch-less": "gulp watchLess --dest=src",
-    "dev:storybook": "start-storybook -p 3001",
+    "dev:storybook": "start-storybook -p 3001 --loglevel silly",
     "build": "npm-run-all build:*",
     "build:clean": "rm -rf lib build",
     "build:compile-css": "gulp compileLess --dest=src",
