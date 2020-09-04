@@ -49,6 +49,7 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-json": "^4.0.3",
     "@rollup/plugin-node-resolve": "^7.1.3",
+    "@storybook/addon-a11y": "^6.0.21",
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/react": "^6.0.21",
     "@transferwise/less-config": "^3.0.0",
