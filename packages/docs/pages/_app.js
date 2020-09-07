@@ -9,6 +9,7 @@ import Layout from '../components/Layout';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import 'currency-flags/dist/currency-flags.min.css';
 import '@transferwise/icons/dist/icons.min.css';
+import { LocaleProvider } from '@transferwise/components';
 
 import { addBasePath } from '../utils/pageUtils';
 
@@ -19,6 +20,16 @@ if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   const axe = require('react-axe'); // eslint-disable-line global-require
   axe(React, ReactDOM, 1000);
 }
+
+const localeOverrideEs = {
+  closeButton: {
+    close: 'Cerrar',
+  },
+  select: {
+    placeholder: 'Seleccione una opción',
+    searchPlaceholder: 'Buscar...',
+  },
+};
 
 class MyApp extends App {
   componentDidMount() {
@@ -32,7 +43,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <>
+      <LocaleProvider locale={localeOverrideEs}>
         <Head>
           <title>Neptune Design System — TransferWise</title>
         </Head>
@@ -40,7 +51,7 @@ class MyApp extends App {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </>
+      </LocaleProvider>
     );
   }
 }

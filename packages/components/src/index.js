@@ -49,3 +49,4 @@ export { default as Markdown } from './markdown';
 export { default as Card } from './card';
 export { default as Summary } from './summary';
 export { default as Switch } from './switch';
+export { default as LocaleProvider } from './locale';

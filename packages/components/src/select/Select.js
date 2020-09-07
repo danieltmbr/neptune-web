@@ -60,7 +60,6 @@ const defaultFilterFunction = (option, keyword) =>
   (option.searchStrings && arrayIncludesString(option.searchStrings, keyword));
 
 class Select extends Component {
-  static contextType = LocaleContext;
   static propTypes = {
     placeholder: Types.string,
     id: Types.string,
@@ -589,5 +588,5 @@ class Select extends Component {
     );
   }
 }
-
+Select.contextType = LocaleContext;
 export default Select;
