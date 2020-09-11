@@ -30,7 +30,7 @@ const Picker = ({ className, items, onClick, small }) => {
             title={title}
             content={content}
             media={media}
-            size={small && Tile.Size.SMALL}
+            size={small ? Tile.Size.SMALL : undefined}
             onClick={() => onClick(key)}
           />
         ))}
