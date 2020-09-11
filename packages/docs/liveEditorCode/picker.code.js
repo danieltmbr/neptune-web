@@ -9,6 +9,13 @@
             style={{ width: '100%' }}
           />
         ),
+        smallMedia: (
+          <img
+            src="https://transferwise.com/public-resources/assets/balances/open-balance/balance_type_everyday_small.svg"
+            alt="illustration"
+            style={{ width: '100%' }}
+          />
+        ),
         title: 'Send money',
         content: <p>Click here to be redirected to transferflow.</p>,
       },

@@ -36,13 +36,13 @@ const Picker = ({ className, items, onClick, small }) => {
         ))}
       </div>
       <NavigationOptionList>
-        {items.map(({ title, content, media, key }) => (
+        {items.map(({ title, content, media, smallMedia, key }) => (
           <NavigationOption
             key={key}
             onClick={() => onClick(key)}
             title={title}
             content={content}
-            media={media}
+            media={smallMedia || media}
             showMediaAtAllSizes
             showMediaCircle={false}
           />
@@ -61,6 +61,7 @@ Picker.propTypes = {
       title: PropTypes.node.isRequired,
       content: PropTypes.node.isRequired,
       media: PropTypes.node.isRequired,
+      smallMedia: PropTypes.node,
       key: PropTypes.string.isRequired,
     }),
   ).isRequired,
