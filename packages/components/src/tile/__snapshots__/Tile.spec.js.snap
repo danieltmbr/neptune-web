@@ -3,7 +3,7 @@
 exports[`Tile matches snapshot when regular size 1`] = `
 <DocumentFragment>
   <div
-    class="tw-tile tw-tile--large"
+    class="tw-tile d-flex flex-column text-xs-center tw-tile--large p-x-5 p-y-4"
   >
     <div
       class="m-y-2 m-x-auto"
@@ -13,15 +13,15 @@ exports[`Tile matches snapshot when regular size 1`] = `
       />
     </div>
     <a
-      class="tw-tile__link"
+      class="tw-tile__link text-no-decoration "
       role="button"
       tabindex="0"
     >
-      <h4
-        class="m-b-1"
+      <span
+        class="h4"
       >
         Receive money
-      </h4>
+      </span>
     </a>
     <div
       class="tw-tile__content"
@@ -37,7 +37,7 @@ exports[`Tile matches snapshot when regular size 1`] = `
 exports[`Tile matches snapshot when small size 1`] = `
 <DocumentFragment>
   <div
-    class="tw-tile tw-tile--small"
+    class="tw-tile d-flex flex-column text-xs-center tw-tile--small p-a-2"
   >
     <div
       class="m-y-2 m-x-auto"
@@ -47,15 +47,15 @@ exports[`Tile matches snapshot when small size 1`] = `
       />
     </div>
     <a
-      class="tw-tile__link"
+      class="tw-tile__link text-no-decoration "
       role="button"
       tabindex="0"
     >
-      <h4
-        class="m-b-1"
+      <span
+        class="h5"
       >
         Receive money
-      </h4>
+      </span>
     </a>
     <div
       class="tw-tile__content"

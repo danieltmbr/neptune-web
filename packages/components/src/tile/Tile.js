@@ -10,7 +10,7 @@ import './Tile.css';
 export const Tile = ({ className, title, content, media, size, onClick }) => {
   return (
     <div
-      className={classNames('tw-tile', className, {
+      className={classNames('tw-tile', 'd-flex', 'flex-column', 'text-xs-center', className, {
         'tw-tile--small p-a-2': size === Tile.Size.SMALL,
         'tw-tile--large p-x-5 p-y-4': size !== Tile.Size.SMALL,
       })}
@@ -19,7 +19,7 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
       {/* using anchor as a button */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
-        className="tw-tile__link"
+        className="tw-tile__link text-no-decoration "
         onClick={onClick}
         tabIndex="0"
         role="button"
