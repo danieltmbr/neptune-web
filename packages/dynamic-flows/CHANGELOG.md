@@ -3,6 +3,228 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.1.0...@transferwise/dynamic-flows@5.1.1) (2020-09-18)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [5.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.0.2...@transferwise/dynamic-flows@5.1.0) (2020-09-17)
+
+
+### Features
+
+* add alert support to dynamic flows ([#592](https://github.com/transferwise/neptune-web/issues/592)) ([35bdd59](https://github.com/transferwise/neptune-web/commit/35bdd596be8445202f6eaea13b26f0fc0e94ad33))
+
+
+
+
+
+## [5.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.0.1...@transferwise/dynamic-flows@5.0.2) (2020-09-16)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.0.0...@transferwise/dynamic-flows@5.0.1) (2020-09-16)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [5.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.13...@transferwise/dynamic-flows@5.0.0) (2020-09-16)
+
+
+* feat!: migration on icons v2 (#588) ([c502370](https://github.com/transferwise/neptune-web/commit/c502370ac25f338bafdf2742b8fedb503d1a32c6)), closes [#588](https://github.com/transferwise/neptune-web/issues/588)
+
+
+### BREAKING CHANGES
+
+* - Select component now expect 'icon' as a 'node' (React icon component) instead of 'string' (icon name)
+- Exposes CloseButton component
+- FormControl now accepts 'icon' as 'node'
+- deleted '.caret' CSS class
+- deleted 'iconfont.less'
+- stopped explicitly import 'glyphicons.less' and 'icons.less' from Bootstrap
+- renamed '.icon' on '.tw-icon' in styles
+
+
+
+
+
+## [4.1.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.12...@transferwise/dynamic-flows@4.1.13) (2020-09-15)
+
+
+### Bug Fixes
+
+* revert icons ([#587](https://github.com/transferwise/neptune-web/issues/587)) ([dd5564a](https://github.com/transferwise/neptune-web/commit/dd5564a7fdf35ab9a9f90138ee7aaa3475fbdd17))
+
+
+
+
+
+## [4.1.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.11...@transferwise/dynamic-flows@4.1.12) (2020-09-15)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.11](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.10...@transferwise/dynamic-flows@4.1.11) (2020-09-15)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.10](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.9...@transferwise/dynamic-flows@4.1.10) (2020-09-15)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.8...@transferwise/dynamic-flows@4.1.9) (2020-09-15)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.7...@transferwise/dynamic-flows@4.1.8) (2020-09-14)
+
+
+### Bug Fixes
+
+* displaying errors after the model has changed ([#581](https://github.com/transferwise/neptune-web/issues/581)) ([42d5e7a](https://github.com/transferwise/neptune-web/commit/42d5e7a2b295c5536b42910d88835d303dff1dc6))
+
+
+
+
+
+## [4.1.7](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.6...@transferwise/dynamic-flows@4.1.7) (2020-09-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.5...@transferwise/dynamic-flows@4.1.6) (2020-09-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.4...@transferwise/dynamic-flows@4.1.5) (2020-09-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.3...@transferwise/dynamic-flows@4.1.4) (2020-09-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.2...@transferwise/dynamic-flows@4.1.3) (2020-09-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.1...@transferwise/dynamic-flows@4.1.2) (2020-09-10)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.1.0...@transferwise/dynamic-flows@4.1.1) (2020-09-10)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [4.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.0.4...@transferwise/dynamic-flows@4.1.0) (2020-09-09)
+
+
+### Features
+
+* Add validation to oneOfs ([#550](https://github.com/transferwise/neptune-web/issues/550)) ([3bd3ae3](https://github.com/transferwise/neptune-web/commit/3bd3ae3138fbcd2778ad42d3df1efca343313a28))
+
+
+
+
+
+## [4.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.0.3...@transferwise/dynamic-flows@4.0.4) (2020-09-08)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.0.2...@transferwise/dynamic-flows@4.0.3) (2020-09-07)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.0.0...@transferwise/dynamic-flows@4.0.2) (2020-09-07)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [4.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@4.0.0...@transferwise/dynamic-flows@4.0.1) (2020-09-07)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [4.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@3.6.0...@transferwise/dynamic-flows@4.0.0) (2020-09-04)
+
+
+* feat!: neptune sprint 28 - Neptune CSS refactor and lab (#547) ([d0ea9ef](https://github.com/transferwise/neptune-web/commit/d0ea9ef1272ab2aae57d7a6d470110ec74af1d25)), closes [#547](https://github.com/transferwise/neptune-web/issues/547)
+
+
+### BREAKING CHANGES
+
+* Moved some CSS out of the css package and into components, deprecated some custom props and changed the directory structure of variable and props files
+
+
+
+
+
 # [3.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@3.5.0...@transferwise/dynamic-flows@3.6.0) (2020-08-28)
 
 

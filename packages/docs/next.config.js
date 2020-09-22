@@ -26,6 +26,9 @@ module.exports = () =>
           withMDX({
             transpileModules: [
               '@transferwise/dynamic-flows',
+              // Required for labs which is only exported as es version.
+              '@transferwise/components',
+              '@transferwise/neptune-validation',
               'buble',
               'regexpu-core',
               'unicode-match-property-ecmascript',

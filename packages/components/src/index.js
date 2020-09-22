@@ -1,4 +1,8 @@
+import '@transferwise/icons/lib/styles/main.min.css';
+
+export { default as Badge } from './badge';
 export { default as Checkbox } from './checkbox';
+export { default as CheckboxButton } from './checkboxButton';
 export { default as Loader } from './loader';
 export { default as Radio } from './radio';
 export { default as Select } from './select';
@@ -51,3 +55,4 @@ export { default as Summary } from './summary';
 export { default as Switch } from './switch';
 export { default as Tile } from './tile';
 export { default as Picker } from './picker';
+export { default as Nudge } from './nudge';

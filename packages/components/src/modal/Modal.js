@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import Close from '@transferwise/icons/react/close';
+import { Cross as CrossIcon } from '@transferwise/icons';
 import KEY_CODES from '../common/keyCodes';
 import './Modal.css';
-
-import { Size } from '../common';
+import { Size, addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 import Dimmer from '../dimmer';
 
 const TRANSITION_DURATION_IN_MILLISECONDS = 150;
@@ -52,6 +51,9 @@ class Modal extends Component {
   }
 
   componentWillUnmount() {
+    if (this.props.open) {
+      removeNoScrollBodyClass();
+    }
     document.removeEventListener('keydown', this.onEscape);
   }
 
@@ -61,6 +63,14 @@ class Modal extends Component {
     if (event.target === event.currentTarget && onClose && closeOnClick) {
       onClose(event);
     }
+  };
+
+  handleOnEnter = () => {
+    addNoScrollBodyClass();
+  };
+
+  handleOnClose = () => {
+    removeNoScrollBodyClass();
   };
 
   checkSpecialClasses = (classToCheck) => {
@@ -91,6 +101,8 @@ class Modal extends Component {
         <CSSTransition
           appear
           in={open}
+          onEnter={this.handleOnEnter}
+          onExited={this.handleOnClose}
           classNames={{ enterDone: 'in' }}
           timeout={TRANSITION_DURATION_IN_MILLISECONDS}
           unmountOnExit
@@ -126,7 +138,7 @@ class Modal extends Component {
                 >
                   <h4 className="tw-modal-title">{title}</h4>
                   <button type="button" onClick={onClose} className="close" aria-label="close">
-                    <Close />
+                    <CrossIcon size={24} />
                   </button>
                 </div>
                 <div className="tw-modal-body">{body}</div>

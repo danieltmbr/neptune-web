@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@3.0.2...@transferwise/neptune-css@4.0.0) (2020-09-16)
+
+
+* feat!: migration on icons v2 (#588) ([c502370](https://github.com/transferwise/neptune-web/commit/c502370ac25f338bafdf2742b8fedb503d1a32c6)), closes [#588](https://github.com/transferwise/neptune-web/issues/588)
+
+
+### BREAKING CHANGES
+
+* - Select component now expect 'icon' as a 'node' (React icon component) instead of 'string' (icon name)
+- Exposes CloseButton component
+- FormControl now accepts 'icon' as 'node'
+- deleted '.caret' CSS class
+- deleted 'iconfont.less'
+- stopped explicitly import 'glyphicons.less' and 'icons.less' from Bootstrap
+- renamed '.icon' on '.tw-icon' in styles
+
+
+
+
+
+## [3.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@3.0.1...@transferwise/neptune-css@3.0.2) (2020-09-15)
+
+
+### Bug Fixes
+
+* revert icons ([#587](https://github.com/transferwise/neptune-web/issues/587)) ([dd5564a](https://github.com/transferwise/neptune-web/commit/dd5564a7fdf35ab9a9f90138ee7aaa3475fbdd17))
+
+
+
+
+
+## [3.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@3.0.0...@transferwise/neptune-css@3.0.1) (2020-09-15)
+
+**Note:** Version bump only for package @transferwise/neptune-css
+
+
+
+
+
+# [3.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@2.1.3...@transferwise/neptune-css@3.0.0) (2020-09-04)
+
+
+* feat!: neptune sprint 28 - Neptune CSS refactor and lab (#547) ([d0ea9ef](https://github.com/transferwise/neptune-web/commit/d0ea9ef1272ab2aae57d7a6d470110ec74af1d25)), closes [#547](https://github.com/transferwise/neptune-web/issues/547)
+
+
+### BREAKING CHANGES
+
+* Moved some CSS out of the css package and into components, deprecated some custom props and changed the directory structure of variable and props files
+
+
+
+
+
 ## [2.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@2.1.2...@transferwise/neptune-css@2.1.3) (2020-08-19)
 
 
