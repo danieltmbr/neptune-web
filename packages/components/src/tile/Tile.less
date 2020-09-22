@@ -1,10 +1,7 @@
 .tw-tile {
   position: relative;
-  display: flex;
-  flex-direction: column;
   border: 1px solid var(--color-border-neutral);
   border-radius: 3px;
-  text-align: center;
 
   &--large {
     width: 340px;
@@ -13,7 +10,7 @@
   &--small {
     width: 180px;
 
-    h4 {
+    .h4 {
       font-size: var(--font-size);
     }
 
@@ -23,17 +20,6 @@
   }
 
   &__link {
-    text-decoration: none;
-
-    &:focus {
-      outline: none;
-      text-decoration: none;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-
     &::after {
       content: '';
       position: absolute;
