@@ -11,7 +11,7 @@ export default {
 export const basic = () => {
   const title = text('title', 'Send money');
   const content = <p>{text('body', 'Click here to be redirected to transferflow.')}</p>;
-  const isSmall = select('Small', { true: true, false: false }, false);
+  const size = select('Size', Picker.Size, Picker.Size.LARGE);
   const smallMedia = (
     <img
       src="https://transferwise.com/public-resources/assets/balances/open-balance/balance_type_everyday_small.svg"
@@ -31,5 +31,5 @@ export const basic = () => {
     { title, content, media, smallMedia },
   ];
 
-  return <Picker items={items} small={isSmall} />;
+  return <Picker items={items} size={size} />;
 };

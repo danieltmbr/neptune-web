@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ElementQueries from 'css-element-queries/src/ElementQueries';
 
+import { Size } from '../common';
 import NavigationOption from '../navigationOption';
 import NavigationOptionList from '../navigationOptionsList';
 import Tile from '../tile';
 
 import './Picker.css';
 
-const Picker = ({ className, items, onClick, small }) => {
+const { LARGE, SMALL } = Size;
+
+const Picker = ({ className, items, onClick, size }) => {
   const ref = useRef(null);
   useEffect(() => {
     ElementQueries.listen();
@@ -30,7 +33,7 @@ const Picker = ({ className, items, onClick, small }) => {
             title={title}
             content={content}
             media={media}
-            size={small ? Tile.Size.SMALL : undefined}
+            size={size === SMALL ? Tile.Size.SMALL : undefined}
             onClick={() => onClick(key)}
           />
         ))}
@@ -52,10 +55,12 @@ const Picker = ({ className, items, onClick, small }) => {
   );
 };
 
+Picker.Size = { SMALL, LARGE };
+
 Picker.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  small: PropTypes.bool,
+  size: PropTypes.oneOf([Picker.Size.LARGE, Picker.Size.SMALL]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.node.isRequired,
@@ -69,7 +74,7 @@ Picker.propTypes = {
 
 Picker.defaultProps = {
   className: null,
-  small: false,
+  size: Picker.Size.LARGE,
 };
 
 export default Picker;

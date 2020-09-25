@@ -1,5 +1,6 @@
 () => (
   <Picker
+    size={Picker.Size.LARGE}
     items={[
       {
         media: (
