@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import Picker from '.';
 
-describe(Picker, () => {
+describe.skip(Picker, () => {
   const onClick = jest.fn();
 
   beforeEach(() => jest.clearAllMocks());

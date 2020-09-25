@@ -17,7 +17,7 @@
           />
         ),
         title: 'Send money',
-        content: <p>Click here to be redirected to transferflow.</p>,
+        content: 'Click here to be redirected to transferflow',
       },
       {
         media: (
@@ -27,10 +27,10 @@
         ),
         title: 'Hank Miller',
         content: (
-          <p>
+          <span>
             Click here to send money to Hank Miller. Money will be sent directly to Hank Miller's
             multi-currency account.
-          </p>
+          </span>
         ),
       },
     ]}

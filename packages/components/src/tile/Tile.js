@@ -12,10 +12,10 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
     <div
       className={classNames('tw-tile', 'd-flex', 'flex-column', 'text-xs-center', className, {
         'tw-tile--small p-a-2': size === Tile.Size.SMALL,
-        'tw-tile--large p-x-5 p-y-4': size !== Tile.Size.SMALL,
+        'tw-tile--large p-y-5 p-x-4': size !== Tile.Size.SMALL,
       })}
     >
-      <div className="m-y-2 m-x-auto">{media}</div>
+      <div className="m-b-2 m-x-auto">{media}</div>
       {/* using anchor as a button */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
