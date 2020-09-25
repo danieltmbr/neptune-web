@@ -11,7 +11,7 @@ export default {
 
 export const basic = () => {
   const title = text('title', 'Hank Miller');
-  const body = <p>{text('body', 'Click here to send money to Mr. Miller')}</p>;
+  const body = text('body', 'Click here to send money to Mr. Miller');
   const size = select('Size', Tile.Size, Tile.Size.LARGE);
 
   return (

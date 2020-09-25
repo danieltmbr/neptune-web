@@ -9,7 +9,7 @@
     }
     size={Tile.Size.LARGE}
     title="Send money"
-    content={<p>Click here to be redirected to transferflow.</p>}
+    content="Click here to be redirected to transferflow."
     onClick={() => alert('onClick')}
   />
 );
