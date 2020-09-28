@@ -15,7 +15,7 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
         'tw-tile--large p-y-5 p-x-4': size !== Tile.Size.SMALL,
       })}
     >
-      <div className="m-b-2 m-x-auto">{media}</div>
+      <div className="tw-tile__media m-x-auto">{media}</div>
       {/* using anchor as a button */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
