@@ -30,7 +30,7 @@
         content: (
           <span>
             Click here to send money to Hank Miller. Money will be sent directly to Hank Miller's
-            multi-currency account.
+            multi-currency account
           </span>
         ),
       },
