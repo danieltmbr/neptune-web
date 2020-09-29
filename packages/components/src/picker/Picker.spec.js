@@ -3,12 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import Picker from '.';
 
+// TODO: find out how the CSS can be tested with ResizeSensor
 describe.skip(Picker, () => {
   const onClick = jest.fn();
 
   beforeEach(() => jest.clearAllMocks());
 
-  it('shows tiles and hides navigation options', async () => {
+  it('shows tiles and hides navigation options', () => {
     const { container } = render(
       <div style={{ width: 1200 }}>
         <Picker
@@ -17,8 +18,6 @@ describe.skip(Picker, () => {
         />
       </div>,
     );
-
-    await screen.findByText('Melipe Forales');
 
     expect(tileContainer(container)).toBeVisible();
     expect(navigationOptionContainer(container)).not.toBeVisible();
