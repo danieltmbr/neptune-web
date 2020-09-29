@@ -3,10 +3,10 @@
 exports[`Tile matches snapshot when regular size 1`] = `
 <DocumentFragment>
   <div
-    class="tw-tile d-flex flex-column text-xs-center tw-tile--large p-x-5 p-y-4"
+    class="tw-tile d-flex flex-column text-xs-center tw-tile--large p-y-5 p-x-4"
   >
     <div
-      class="m-y-2 m-x-auto"
+      class="tw-tile__media m-x-auto"
     >
       <svg
         data-testid="illustration"
@@ -40,7 +40,7 @@ exports[`Tile matches snapshot when small size 1`] = `
     class="tw-tile d-flex flex-column text-xs-center tw-tile--small p-a-2"
   >
     <div
-      class="m-y-2 m-x-auto"
+      class="tw-tile__media m-x-auto"
     >
       <svg
         data-testid="illustration"
