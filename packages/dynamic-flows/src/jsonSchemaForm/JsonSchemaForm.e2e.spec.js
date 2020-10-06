@@ -2,6 +2,12 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import { Alert } from '@transferwise/components';
+
+import simpleSchema from './schemas/simple.json';
+import oneOfSchema from './schemas/oneOf.json';
+import allOfSchema from './schemas/allOf.json';
+import audRecipientSchema from './schemas/audRecipient.json';
+
 import JsonSchemaForm from '.';
 
 describe('E2E: Given a component for rendering a JSON schema form', () => {
@@ -114,6 +120,46 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
       it('should have called onChange again', () => {
         expect(onChange).toHaveBeenCalledTimes(3);
+      });
+    });
+  });
+
+  describe(`when initialised with disabled={true}`, () => {
+    const schemaVariants = {
+      simple: simpleSchema,
+      oneOf: oneOfSchema,
+      allOf: allOfSchema,
+      'AUD Recipient': audRecipientSchema,
+    };
+    Object.keys(schemaVariants).forEach((schemaKey) => {
+      const selectedSchema = schemaVariants[schemaKey];
+      function renderComponent(partialProps) {
+        const props = {
+          schema: {},
+          model: {},
+          onChange: jest.fn(),
+          submitted: false,
+          locale: 'en-GB',
+          errors: {},
+          translations: {},
+          ...partialProps,
+        };
+
+        return mount(<JsonSchemaForm {...props} />);
+      }
+      describe(`...and "${schemaKey}" schema`, () => {
+        it(`should render all UI elements with a disabled attribute`, () => {
+          const componentWrapper = renderComponent({ schema: selectedSchema, disabled: true });
+          const elements = [
+            ...componentWrapper.find('input'),
+            ...componentWrapper.find('button'),
+            ...componentWrapper.find('div.radio'),
+          ];
+
+          elements.forEach((input) => {
+            expect(input.props.disabled).toBe(true);
+          });
+        });
       });
     });
   });
