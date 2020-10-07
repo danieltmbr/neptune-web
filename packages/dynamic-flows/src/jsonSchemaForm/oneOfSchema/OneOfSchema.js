@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
 
+import { isArray, isEmpty } from '@transferwise/neptune-validation';
 import GenericSchema from '../genericSchema';
 import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
@@ -9,7 +10,7 @@ import ControlFeedback from '../controlFeedback';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import { getValidationFailures } from '../../common/validation/validation-failures';
 import { isValidSchema } from '../../common/validation/schema-validators';
-import { isArray, isEmpty } from '@transferwise/neptune-validation';
+
 import DynamicAlert from '../../layout/alert';
 
 const OneOfSchema = (props) => {
@@ -125,7 +126,6 @@ const OneOfSchema = (props) => {
     <>
       {props.schema.oneOf.length > 1 && (
         <>
-          {props.schema.alert && <DynamicAlert component={props.schema.alert} />}
           <div className={classNames(formGroupClasses)}>
             {props.schema.title && (
               <label className="control-label" htmlFor={id}>
@@ -141,6 +141,7 @@ const OneOfSchema = (props) => {
               value={schemaIndex}
               translations={props.translations}
               locale={props.locale}
+              disabled={props.disabled}
             />
             <ControlFeedback
               changed={changed}
@@ -152,6 +153,7 @@ const OneOfSchema = (props) => {
               validations={validations}
             />
           </div>
+          {props.schema.alert && <DynamicAlert component={props.schema.alert} />}
         </>
       )}
 
@@ -165,6 +167,7 @@ const OneOfSchema = (props) => {
           onChange={(model, schema) => onChange(model, schema, schemaIndex)}
           submitted={props.submitted}
           hideTitle
+          disabled={props.disabled}
         />
       )}
     </>
@@ -189,6 +192,7 @@ OneOfSchema.propTypes = {
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,
   required: Types.bool,
+  disabled: Types.bool,
 };
 
 OneOfSchema.defaultProps = {
@@ -197,6 +201,7 @@ OneOfSchema.defaultProps = {
   locale: 'en-GB',
   required: false,
   translations: {},
+  disabled: false,
 };
 
 export default OneOfSchema;
