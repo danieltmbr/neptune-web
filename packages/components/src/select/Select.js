@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import Types from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
-import { LocaleContext } from '../locale/index';
 
 import { Search as SearchIcon } from '@transferwise/icons';
 import Option from './option';
@@ -59,80 +58,7 @@ const defaultFilterFunction = (option, keyword) =>
   (option.currency && includesString(option.currency, keyword)) ||
   (option.searchStrings && arrayIncludesString(option.searchStrings, keyword));
 
-class Select extends Component {
-  static propTypes = {
-    placeholder: Types.string,
-    id: Types.string,
-    required: Types.bool,
-    disabled: Types.bool,
-    inverse: Types.bool,
-    dropdownRight: Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-    dropdownWidth: Types.oneOf(['sm', 'md', 'lg']),
-    size: Types.oneOf(['sm', 'md', 'lg']),
-    block: Types.bool,
-    selected: Types.shape({
-      value: Types.any.isRequired,
-      label: Types.node,
-      icon: Types.node,
-      currency: Types.string,
-      note: Types.node,
-      secondary: Types.node,
-    }),
-    /**
-     * Search toggle
-     * if `true` default search functionality being enabled (not case sensitive search in option labels & currency props)
-     * if `function` you can define your own search function to implement custom search experience. This search function used while filtering the options array. The custom search function takes two parameters. First is the option the second is the keyword.
-     */
-    search: Types.oneOfType([Types.bool, Types.func]),
-    onChange: Types.func.isRequired,
-    onFocus: Types.func,
-    onBlur: Types.func,
-    options: Types.arrayOf(
-      Types.shape({
-        value: Types.any,
-        label: Types.node,
-        header: Types.node,
-        icon: Types.node,
-        currency: Types.string,
-        note: Types.node,
-        secondary: Types.node,
-        separator: Types.bool,
-        disabled: Types.bool,
-        searchStrings: Types.arrayOf(Types.string),
-      }),
-    ).isRequired,
-    /**
-     * To have full controll of your search value and response use `onSearchChange` function combined with `searchValue` and custom filtering on the options array.
-     * DO NOT USE TOGETHER WITH `search` PROPERTY
-     */
-    onSearchChange: Types.func,
-    searchValue: Types.string,
-    searchPlaceholder: Types.string,
-    classNames: Types.objectOf(Types.string),
-    dropdownUp: Types.bool,
-  };
-
-  static defaultProps = {
-    id: undefined,
-    size: 'md',
-    placeholder: undefined,
-    dropdownRight: null,
-    dropdownWidth: null,
-    inverse: false,
-    required: false,
-    disabled: false,
-    block: true,
-    selected: null,
-    onFocus: null,
-    onBlur: null,
-    onSearchChange: undefined,
-    search: false,
-    searchValue: '',
-    searchPlaceholder: undefined,
-    classNames: {},
-    dropdownUp: false,
-  };
-
+export default class Select extends Component {
   static getDerivedStateFromProps(props, state) {
     const hasActiveOptions = !!props.options.length;
 
@@ -141,7 +67,8 @@ class Select extends Component {
         return {
           keyboardFocusedOptionIndex: 0,
         };
-      } else if (!hasActiveOptions && state.keyboardFocusedOptionIndex !== null) {
+      }
+      if (!hasActiveOptions && state.keyboardFocusedOptionIndex !== null) {
         return {
           keyboardFocusedOptionIndex: null,
         };
@@ -151,12 +78,8 @@ class Select extends Component {
     return null;
   }
 
-  constructor(props, context) {
+  constructor(props) {
     super(props);
-
-    this.placeholder = context.select.placeholder || props.placeholder;
-    this.searchPlaceholder = context.select.searchPlaceholder || props.searchPlaceholder;
-
     this.state = {
       open: false,
       searchValue: '',
@@ -297,7 +220,8 @@ class Select extends Component {
       const selectedOptionIndex = optionsWithoutHeaders.reduce((optionIndex, current, index) => {
         if (optionIndex !== null) {
           return optionIndex;
-        } else if (previousProps.selected && previousProps.selected.value === current.value) {
+        }
+        if (previousProps.selected && previousProps.selected.value === current.value) {
           return index;
         }
         return null;
@@ -306,7 +230,8 @@ class Select extends Component {
       let indexToStartMovingFrom = previousFocusedIndex;
       if (previousFocusedIndex === null && selectedOptionIndex === null) {
         return { keyboardFocusedOptionIndex: 0 };
-      } else if (previousFocusedIndex === null && selectedOptionIndex !== null) {
+      }
+      if (previousFocusedIndex === null && selectedOptionIndex !== null) {
         indexToStartMovingFrom = selectedOptionIndex;
       }
       const unClampedNewIndex = indexToStartMovingFrom + difference;
@@ -379,7 +304,14 @@ class Select extends Component {
   style = (className) => this.props.classNames[className] || className;
 
   renderOptionsList() {
-    const { dropdownRight, dropdownWidth, onSearchChange, required, search } = this.props;
+    const {
+      dropdownRight,
+      dropdownWidth,
+      onSearchChange,
+      placeholder,
+      required,
+      search,
+    } = this.props;
     const { open, shouldRenderWithPortal } = this.state;
     const s = this.style;
 
@@ -393,7 +325,7 @@ class Select extends Component {
 
     const list = (
       <ul className={dropdownClass} role="menu">
-        {!required && !canSearch && this.placeholder ? this.renderPlaceHolderOption() : ''}
+        {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
         {canSearch ? this.renderSearchBox() : ''}
         {this.renderOptions()}
       </ul>
@@ -411,7 +343,7 @@ class Select extends Component {
   }
 
   renderSearchBox() {
-    const { searchValue } = this.props;
+    const { searchValue, searchPlaceholder } = this.props;
     return (
       <li className={this.style('tw-dropdown-item--divider')}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -423,7 +355,7 @@ class Select extends Component {
             <input
               type="text"
               className={`${this.style('tw-select-filter')} ${this.style('form-control')}`}
-              placeholder={this.searchPlaceholder}
+              placeholder={searchPlaceholder}
               onChange={this.handleSearchChange}
               onClick={stopPropagation}
               value={searchValue || this.state.searchValue}
@@ -437,7 +369,7 @@ class Select extends Component {
   }
 
   renderPlaceHolderOption() {
-    const { placeholder } = this;
+    const { placeholder } = this.props;
     return (
       /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
@@ -502,11 +434,11 @@ class Select extends Component {
   };
 
   renderButtonInternals() {
-    const { selected } = this.props;
+    const { selected, placeholder } = this.props;
     if (selected) {
       return <Option {...selected} classNames={this.props.classNames} selected />;
     }
-    return <span className={this.style('form-control-placeholder')}>{this.placeholder}</span>;
+    return <span className={this.style('form-control-placeholder')}>{placeholder}</span>;
   }
 
   renderOverlay() {
@@ -593,5 +525,76 @@ class Select extends Component {
     );
   }
 }
-Select.contextType = LocaleContext;
-export default Select;
+
+Select.propTypes = {
+  placeholder: Types.string,
+  id: Types.string,
+  required: Types.bool,
+  disabled: Types.bool,
+  inverse: Types.bool,
+  dropdownRight: Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  dropdownWidth: Types.oneOf(['sm', 'md', 'lg']),
+  size: Types.oneOf(['sm', 'md', 'lg']),
+  block: Types.bool,
+  selected: Types.shape({
+    value: Types.any.isRequired,
+    label: Types.node,
+    icon: Types.node,
+    currency: Types.string,
+    note: Types.node,
+    secondary: Types.node,
+  }),
+  /**
+   * Search toggle
+   * if `true` default search functionality being enabled (not case sensitive search in option labels & currency props)
+   * if `function` you can define your own search function to implement custom search experience. This search function used while filtering the options array. The custom search function takes two parameters. First is the option the second is the keyword.
+   */
+  search: Types.oneOfType([Types.bool, Types.func]),
+  onChange: Types.func.isRequired,
+  onFocus: Types.func,
+  onBlur: Types.func,
+  options: Types.arrayOf(
+    Types.shape({
+      value: Types.any,
+      label: Types.node,
+      header: Types.node,
+      icon: Types.node,
+      currency: Types.string,
+      note: Types.node,
+      secondary: Types.node,
+      separator: Types.bool,
+      disabled: Types.bool,
+      searchStrings: Types.arrayOf(Types.string),
+    }),
+  ).isRequired,
+  /**
+   * To have full controll of your search value and response use `onSearchChange` function combined with `searchValue` and custom filtering on the options array.
+   * DO NOT USE TOGETHER WITH `search` PROPERTY
+   */
+  onSearchChange: Types.func,
+  searchValue: Types.string,
+  searchPlaceholder: Types.string,
+  classNames: Types.objectOf(Types.string),
+  dropdownUp: Types.bool,
+};
+
+Select.defaultProps = {
+  id: undefined,
+  placeholder: undefined,
+  size: 'md',
+  dropdownRight: null,
+  dropdownWidth: null,
+  inverse: false,
+  required: false,
+  disabled: false,
+  block: true,
+  selected: null,
+  onFocus: null,
+  onBlur: null,
+  onSearchChange: undefined,
+  search: false,
+  searchValue: '',
+  searchPlaceholder: 'Search...',
+  classNames: {},
+  dropdownUp: false,
+};

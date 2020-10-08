@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [30.0.9](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.8...@transferwise/components@30.0.9) (2020-09-30)
+
+
+### Bug Fixes
+
+* Neptune Sprint 29/30 - eslint fixes and a11y improvements ([#603](https://github.com/transferwise/neptune-web/issues/603)) ([ffcdba3](https://github.com/transferwise/neptune-web/commit/ffcdba3fff284fce8425892f15f824169f449941))
+
+
+
+
+
+## [30.0.8](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.7...@transferwise/components@30.0.8) (2020-09-29)
+
+
+### Bug Fixes
+
+* IE11 double fire event ([#595](https://github.com/transferwise/neptune-web/issues/595)) ([df4ae8b](https://github.com/transferwise/neptune-web/commit/df4ae8bfb52c6c5323ce5ab9386258a9544f2836))
+
+
+
+
+
+## [30.0.7](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.6...@transferwise/components@30.0.7) (2020-09-28)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [30.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.5...@transferwise/components@30.0.6) (2020-09-24)
+
+
+### Bug Fixes
+
+* alignment in money input component ([#599](https://github.com/transferwise/neptune-web/issues/599)) ([9cbef94](https://github.com/transferwise/neptune-web/commit/9cbef945fcbfd3d96e6bfcd29194c6c23019cf6d))
+
+
+
+
+
+## [30.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.4...@transferwise/components@30.0.5) (2020-09-23)
+
+
+### Bug Fixes
+
+* **DefinitionList:** add padding for vertical layout ([#598](https://github.com/transferwise/neptune-web/issues/598)) ([ae76be1](https://github.com/transferwise/neptune-web/commit/ae76be1551016ff3ee1b66760bcc5f9c0db752e2))
+
+
+
+
+
+## [30.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.3...@transferwise/components@30.0.4) (2020-09-22)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [30.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.2...@transferwise/components@30.0.3) (2020-09-18)
+
+
+### Bug Fixes
+
+* apply overflow hidden to content container ([#593](https://github.com/transferwise/neptune-web/issues/593)) ([f28225a](https://github.com/transferwise/neptune-web/commit/f28225ac0c8f2f967515916671f6b9b7a29278bd))
+
+
+
+
+
+## [30.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.1...@transferwise/components@30.0.2) (2020-09-16)
+
+
+### Bug Fixes
+
+* fix spacing in pagination component ([#589](https://github.com/transferwise/neptune-web/issues/589)) ([56dbba0](https://github.com/transferwise/neptune-web/commit/56dbba0905c059fa179b0a3ddcc67c759815a93d))
+
+
+
+
+
 ## [30.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.0...@transferwise/components@30.0.1) (2020-09-16)
 
 
