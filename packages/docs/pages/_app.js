@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/no-extraneous-dependencies */
 
+import { IntlProvider } from 'react-intl';
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
@@ -9,7 +10,6 @@ import Layout from '../components/Layout';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
-import { LocaleProvider } from '@transferwise/components';
 
 import { addBasePath } from '../utils/pageUtils';
 
@@ -21,14 +21,10 @@ if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   axe(React, ReactDOM, 1000);
 }
 
-const localeOverrideEs = {
-  closeButton: {
-    close: 'Cerrar',
-  },
-  select: {
-    placeholder: 'Seleccione una opción',
-    searchPlaceholder: 'Buscar...',
-  },
+const spanishMessages = {
+  'closeButton.close': 'Cerrar',
+  'select.placeholder': 'Seleccione una opción',
+  'select.searchPlaceholder': 'Buscar...',
 };
 
 class MyApp extends App {
@@ -43,7 +39,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <LocaleProvider locale={localeOverrideEs}>
+      <IntlProvider messages={spanishMessages} locale="es" defaultLocale="en">
         <Head>
           <title>Neptune Design System — TransferWise</title>
         </Head>
@@ -51,7 +47,7 @@ class MyApp extends App {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </LocaleProvider>
+      </IntlProvider>
     );
   }
 }
