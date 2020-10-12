@@ -5,6 +5,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
+import { IntlProvider } from 'react-intl';
 import Layout from '../components/Layout';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -13,6 +14,7 @@ import 'currency-flags/dist/currency-flags.min.css';
 import { addBasePath } from '../utils/pageUtils';
 
 import '../static/assets/main.css';
+import * as messages from '../lang/en-GB.json';
 
 if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   const ReactDOM = require('react-dom'); // eslint-disable-line global-require
@@ -32,7 +34,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <>
+      <IntlProvider locale="en-GB" messages={messages.default}>
         <Head>
           <title>Neptune Design System — TransferWise</title>
         </Head>
@@ -40,7 +42,7 @@ class MyApp extends App {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </>
+      </IntlProvider>
     );
   }
 }
