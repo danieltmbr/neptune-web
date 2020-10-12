@@ -8,7 +8,7 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:compile-css": "gulp watchLess --src='static/assets' --dest='static/assets'",
     "dev:next": "node ./docgen.js && next dev",
-    "docs": "yarn dev",
+    "docs": "yarn translations && yarn dev ",
     "build": "npm-run-all build:*",
     "build:compile-css": "gulp compileLess --src='static/assets' --dest='static/assets'",
     "build:docs-gen": "node ./docgen.js && node ./utils/bundleSize/getBundleSize.js",
@@ -18,7 +18,11 @@
     "deploy:gh-pages": "deploy-to-github-pages -d docs-build -m main",
     "lint": "eslint components/ pages/ utils/",
     "lint:fix": "yarn lint --fix",
-    "test": "jest --config ../../node_modules/@transferwise/test-config/test/jest.lint.js"
+    "test": "jest --config ../../node_modules/@transferwise/test-config/test/jest.lint.js",
+    "translations": "npm-run-all translations:*",
+    "translations:clean": "rm -rf lang",
+    "translations:compile-en": "formatjs compile '../../node_modules/**/lang/en-GB.json' --ast --out-file lang/en-GB.json",
+    "translations:compile-fr": "formatjs compile '../../node_modules/**/lang/fr.json' --ast --out-file lang/fr.json"
   },
   "repository": {
     "type": "git",
@@ -76,5 +80,9 @@
   "resolutions": {
     "lint-staged/**/kind-of": "^6.0.3",
     "next/**/kind-of": "^6.0.3"
-  }
+  },
+  "supportedLocales": [
+    "en-GB",
+    "fr"
+  ]
 }
