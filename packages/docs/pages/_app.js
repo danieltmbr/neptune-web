@@ -5,12 +5,11 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
-import { IntlProvider } from 'react-intl';
 import Layout from '../components/Layout';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
-import messages from '../lang/en-GB.json';
+
 import { addBasePath } from '../utils/pageUtils';
 
 import '../static/assets/main.css';
@@ -20,17 +19,6 @@ if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   const axe = require('react-axe'); // eslint-disable-line global-require
   axe(React, ReactDOM, 1000);
 }
-
-// function loadLocaleData(locale) {
-//   switch (locale) {
-//     case 'fr':
-//       return import('../lang/fr.json');
-//     case 'en':
-//       return import('../lang/en-GB.json');
-//     default:
-//       return import('../lang/en-GB.json');
-//   }
-// }
 
 class MyApp extends App {
   componentDidMount() {
@@ -42,8 +30,9 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
+
     return (
-      <IntlProvider locale="en" messages={messages}>
+      <>
         <Head>
           <title>Neptune Design System — TransferWise</title>
         </Head>
@@ -51,7 +40,7 @@ class MyApp extends App {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </IntlProvider>
+      </>
     );
   }
 }

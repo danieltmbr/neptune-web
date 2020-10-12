@@ -1,6 +1,3 @@
 {
-  "neptune.closeButton.close": {
-    "id": "neptune.closeButton.close",
-    "defaultMessage": "Fermert Button"
-  }
+  "neptune.closeButton.close": "Fermer"
 }

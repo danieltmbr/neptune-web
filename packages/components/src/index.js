@@ -1,5 +1,4 @@
-import '@transferwise/icons/lib/styles/main.min.css';
-
+export { default as AppProvider } from './common/appProvider';
 export { default as Badge } from './badge';
 export { default as Checkbox } from './checkbox';
 export { default as CheckboxButton } from './checkboxButton';
