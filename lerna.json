@@ -9,9 +9,10 @@
         "**/*.spec.js",
         "**/*.yml",
         "**/*.story.js",
-        "packages/components/src/neptuneCssTest",
-        "packages/.storybook",
-        "packages/docs"
+        "**/.storybook/**",
+        "packages/components/neptuneCssTest/**",
+        "packages/docs",
+        "**/lerna.json"
       ]
     }
   },
