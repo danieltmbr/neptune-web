@@ -55,7 +55,7 @@ addParameters({
 });
 
 const requires = [require.context('../src', true, /\.story\.js$/)];
-if (process.env.NODE_ENV === 'percy') {
+if (process.env.NODE_ENV === 'visual-regression') {
   requires.push(require.context('../test', true, /\.story\.js$/));
 }
 
