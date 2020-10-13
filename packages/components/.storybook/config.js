@@ -53,11 +53,9 @@ addParameters({
     panelPosition: 'right',
   },
 });
+const requires = [require.context('../src', true, /\.story\.js$/)];
+if (process.env.NODE_ENV === 'percy') {
+  requires.push(require.context('../test', true, /\.story\.js$/));
+}
 
-configure(
-  [
-    require.context('../src', true, /\.story\.js$/),
-    require.context('../test', true, /\.story\.js$/),
-  ],
-  module,
-);
+configure(requires, module);
