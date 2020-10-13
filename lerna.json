@@ -10,7 +10,7 @@
         "**/*.yml",
         "**/*.story.js",
         "**/.storybook/**",
-        "packages/components/neptuneCssTest/**",
+        "**/neptuneCssTest/**",
         "packages/docs",
         "lerna.json"
       ]
