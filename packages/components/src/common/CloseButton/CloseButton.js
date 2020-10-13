@@ -1,8 +1,8 @@
 import React from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
-
 import { useIntl } from 'react-intl';
+import { Cross as CrossIcon } from '@transferwise/icons';
 
 import './CloseButton.css';
 
@@ -12,10 +12,10 @@ export const CloseButton = ({ onClick, className }) => {
     <button
       type="button"
       className={classNames('tw-close-button', 'btn-link', 'text-no-decoration', className)}
-      aria-label="CLOSE"
+      aria-label={intl.formatMessage({ id: 'neptune.closeButton.close' })}
       onClick={onClick}
     >
-      {intl.formatMessage({ id: 'neptune.closeButton.close' })}
+      <CrossIcon size={24} />
     </button>
   );
 };

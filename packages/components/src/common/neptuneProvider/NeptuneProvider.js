@@ -1,19 +1,10 @@
 import React from 'react';
+import Types from 'prop-types';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
-import messagesEn from '../../../lang/en-GB.json';
-import messagesFr from '../../../lang/fr.json';
+import messages from '../lang';
 
-const AppProvider = ({ locale, children }) => {
+const NeptuneProvider = ({ locale, children }) => {
   const cache = createIntlCache();
-  const messages = {
-    en: {
-      ...messagesEn,
-    },
-    fr: {
-      ...messagesFr,
-    },
-  };
-
   const intl = createIntl(
     {
       locale,
@@ -21,8 +12,17 @@ const AppProvider = ({ locale, children }) => {
     },
     cache,
   );
-
   return <RawIntlProvider value={intl}>{children}</RawIntlProvider>;
 };
 
-export default AppProvider;
+NeptuneProvider.propTypes = {
+  locale: Types.string,
+  children: Types.node,
+};
+
+NeptuneProvider.defaultProps = {
+  locale: 'en',
+  children: null,
+};
+
+export default NeptuneProvider;

@@ -3,7 +3,7 @@ import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
-import AppProvider from '../src/common/appProvider';
+import NeptuneProvider from '../src/common/neptuneProvider';
 
 import theme from './common/theme';
 import '@transferwise/neptune-css/dist/css/neptune.css';
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000, undefined, context);
 }
 
-const TranslationsDecorator = (storyFn) => <AppProvider locale="fr">{storyFn()}</AppProvider>;
+const ComponentsContextProvider = (storyFn) => <NeptuneProvider locale="en">{storyFn()}</NeptuneProvider>;
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
 
 const CenterDecorator = (storyFn) => (
@@ -49,7 +49,7 @@ addDecorator(
 );
 addDecorator(CenterDecorator);
 addDecorator(StrictModeDecorator);
-addDecorator(TranslationsDecorator);
+addDecorator(ComponentsContextProvider);
 addParameters({
   options: {
     theme,
