@@ -63,6 +63,7 @@ const ObjectSchema = (props) => {
               submitted={props.submitted}
               required={isRequired(propertyName)}
               disabled={props.disabled}
+              host={props.host}
             />
           </div>
         ))}
@@ -93,6 +94,7 @@ ObjectSchema.propTypes = {
   submitted: Types.bool.isRequired,
   hideTitle: Types.bool,
   disabled: Types.bool,
+  host: Types.string,
 };
 
 ObjectSchema.defaultProps = {
@@ -102,6 +104,7 @@ ObjectSchema.defaultProps = {
   translations: {},
   hideTitle: false,
   disabled: false,
+  host: '',
 };
 
 export default ObjectSchema;

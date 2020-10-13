@@ -37,12 +37,17 @@ export const basic = () => {
 
   return (
     <JsonSchemaForm
+      host="http://localhost:3000"
       schema={schema}
       model={model}
       errors={errors}
       locale={locale}
       translations={translations}
-      onChange={action('onChange')}
+      onChange={(model, valid, schema) => {
+        console.log(model, 'model');
+        console.log(valid, 'valid');
+        console.log(schema, 'schema');
+      }}
       submitted={submitted}
       disabled={disabled}
     />

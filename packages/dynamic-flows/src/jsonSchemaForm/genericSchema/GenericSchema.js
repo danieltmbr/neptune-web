@@ -5,6 +5,7 @@ import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import AllOfSchema from '../allOfSchema';
+import PersistAsyncSchema from '../persistAsyncSchema';
 
 const basicTypes = ['string', 'number', 'integer', 'boolean'];
 
@@ -14,10 +15,16 @@ const GenericSchemaForm = (props) => {
   const isObject = schema.type === 'object';
   const isOneOf = !!schema.oneOf;
   const isAllOf = !!schema.allOf;
-  const isBasicType = basicTypes.indexOf(schema.type) >= 0 || !!schema.enum || !!schema.const;
+  const isPersistAsync = !!schema.persistAsync;
+  const isBasicType =
+    basicTypes.indexOf(schema.type) >= 0 ||
+    !!schema.enum ||
+    !!schema.const ||
+    !!schema.persistAsync;
 
   return (
     <>
+      {isPersistAsync && <PersistAsyncSchema {...props} />}
       {isBasicType && !isOneOf && <BasicTypeSchema {...props} />}
       {isObject && <ObjectSchema {...props} />}
       {isOneOf && <OneOfSchema {...props} />}
@@ -33,6 +40,7 @@ GenericSchemaForm.propTypes = {
     const: Types.oneOfType([Types.string, Types.number, Types.bool]),
     oneOf: Types.arrayOf(Types.shape({})),
     allOf: Types.arrayOf(Types.shape({})),
+    persistAsync: Types.object,
   }).isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
   errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),

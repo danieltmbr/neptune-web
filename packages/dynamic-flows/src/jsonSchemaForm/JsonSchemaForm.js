@@ -45,6 +45,10 @@ JsonSchemaForm.propTypes = {
    * Tell the form if it should disable all controls.
    */
   disabled: Types.bool,
+  /**
+   * The host to call for specs like persist async and validation async.
+   */
+  host: Types.string,
 };
 
 JsonSchemaForm.defaultProps = {
@@ -53,6 +57,7 @@ JsonSchemaForm.defaultProps = {
   locale: 'en-GB',
   translations: {},
   disabled: false,
+  host: '',
 };
 
 export default JsonSchemaForm;

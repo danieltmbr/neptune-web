@@ -168,6 +168,7 @@ const OneOfSchema = (props) => {
           submitted={props.submitted}
           hideTitle
           disabled={props.disabled}
+          host={props.host}
         />
       )}
     </>
@@ -193,6 +194,7 @@ OneOfSchema.propTypes = {
   submitted: Types.bool.isRequired,
   required: Types.bool,
   disabled: Types.bool,
+  host: Types.string,
 };
 
 OneOfSchema.defaultProps = {
@@ -202,6 +204,7 @@ OneOfSchema.defaultProps = {
   required: false,
   translations: {},
   disabled: false,
+  host: '',
 };
 
 export default OneOfSchema;
