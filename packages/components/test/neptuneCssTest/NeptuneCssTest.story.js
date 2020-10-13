@@ -1,6 +1,6 @@
 import React from 'react';
 import * as components from './components';
-import Alert from '../alert';
+import Alert from '../../src/alert';
 
 export default {
   component: 'Neptune css test',
@@ -9,7 +9,10 @@ export default {
 
 export const basic = () => (
   <>
-    <Alert type="warning">Please use only for visual regression testing</Alert>
+    <Alert type="error">
+      This page is used only for visual regression testing. We DO NOT garantee support for the
+      elements used on this page. Please DO NOT use as reference
+    </Alert>
     <div className="m-t-5" dangerouslySetInnerHTML={{ __html: Object.values(components) }} />
   </>
 );

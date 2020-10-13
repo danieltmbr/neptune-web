@@ -54,4 +54,10 @@ addParameters({
   },
 });
 
-configure(require.context('../src', true, /\.story\.js$/), module);
+configure(
+  [
+    require.context('../src', true, /\.story\.js$/),
+    require.context('../test', true, /\.story\.js$/),
+  ],
+  module,
+);
