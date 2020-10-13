@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [30.0.12](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.11...@transferwise/components@30.0.12) (2020-10-13)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [30.0.11](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.10...@transferwise/components@30.0.11) (2020-10-12)
+
+
+### Bug Fixes
+
+* don't complain if no radios are provided ([#631](https://github.com/transferwise/neptune-web/issues/631)) ([231e76d](https://github.com/transferwise/neptune-web/commit/231e76da13849c1b5fa4864562b64cc431da9368))
+
+
+
+
+
+## [30.0.10](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.9...@transferwise/components@30.0.10) (2020-10-12)
+
+
+### Bug Fixes
+
+* reduce dimmer opacity ([#630](https://github.com/transferwise/neptune-web/issues/630)) ([61b272b](https://github.com/transferwise/neptune-web/commit/61b272bd0e61d60d52b0f88cb0d4e5b856607327))
+
+
+
+
+
 ## [30.0.9](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.8...@transferwise/components@30.0.9) (2020-09-30)
 
 
