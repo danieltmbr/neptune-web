@@ -12,7 +12,7 @@
         "**/.storybook/**",
         "packages/components/neptuneCssTest/**",
         "packages/docs",
-        "**/lerna.json"
+        "lerna.json"
       ]
     }
   },
