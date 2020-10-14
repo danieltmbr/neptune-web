@@ -30,7 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000, undefined, context);
 }
 
-const ComponentsContextProvider = (storyFn) => <NeptuneProvider locale="en">{storyFn()}</NeptuneProvider>;
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
 
 const CenterDecorator = (storyFn) => (
@@ -49,7 +48,7 @@ addDecorator(
 );
 addDecorator(CenterDecorator);
 addDecorator(StrictModeDecorator);
-addDecorator(ComponentsContextProvider);
+addDecorator((storyFn) => <NeptuneProvider locale="en">{storyFn()}</NeptuneProvider>);
 addParameters({
   options: {
     theme,

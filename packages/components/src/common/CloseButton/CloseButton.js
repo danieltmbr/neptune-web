@@ -12,7 +12,7 @@ export const CloseButton = ({ onClick, className }) => {
     <button
       type="button"
       className={classNames('tw-close-button', 'btn-link', 'text-no-decoration', className)}
-      aria-label={intl.formatMessage({ id: 'neptune.closeButton.close' })}
+      aria-label={intl.formatMessage({ id: 'np.c9n.aria.lbl.close' })}
       onClick={onClick}
     >
       <CrossIcon size={24} />

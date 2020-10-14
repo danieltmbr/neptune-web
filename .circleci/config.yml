@@ -200,6 +200,7 @@ workflows:
                 - develop
                 - next
                 - main
+                - beta
       - publish:
           context: frontend-publish
           requires:
