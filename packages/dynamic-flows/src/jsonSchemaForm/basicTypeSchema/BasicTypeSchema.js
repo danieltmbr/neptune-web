@@ -160,6 +160,7 @@ BasicTypeSchema.defaultProps = {
   required: false,
   locale: 'en-GB',
   disabled: false,
+  onBlur: null,
 };
 
 export default BasicTypeSchema;

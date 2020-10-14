@@ -4,11 +4,14 @@ import { Alert } from '@transferwise/components';
 import BasicTypeSchema from '../basicTypeSchema';
 import { getValidationFailures } from '../../common/validation/validation-failures';
 
+const ERROR_KEY = 'error';
+
 const PersistAsyncSchema = (props) => {
   const [model, setModel] = useState(props.model);
-  const [persistAsyncInProgress, setPersistAsyncInProgress] = useState(false)
+  const [persistAsyncInProgress, setPersistAsyncInProgress] = useState(false);
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
-  const [persistAsyncError, setPersistAsyncError] = useState(false);
+  const [persistAsyncError, setPersistAsyncError] = useState(null);
+  const [fallbackError, setFallbackError] = useState(false);
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
     setPersistAsyncInProgress(true);
@@ -25,11 +28,11 @@ const PersistAsyncSchema = (props) => {
     if (idPropertyValue) {
       setModel(idPropertyValue);
       props.onChange(idPropertyValue, props.schema);
+    } else if (responseJson[ERROR_KEY]) {
+      setPersistAsyncError(responseJson[ERROR_KEY]);
     } else {
-      setPersistAsyncError(true);
+      setFallbackError(true);
     }
-    setPersistAsyncInProgress(false);
-    return idPropertyValue;
   };
 
   useEffect(() => {
@@ -46,7 +49,8 @@ const PersistAsyncSchema = (props) => {
   };
 
   const persistAsyncOnChange = (newPersistAsyncModel) => {
-    setPersistAsyncError(false);
+    setFallbackError(false);
+    setPersistAsyncError(null);
     setPersistAsyncModel(newPersistAsyncModel);
   };
 
@@ -56,11 +60,10 @@ const PersistAsyncSchema = (props) => {
         onChange={persistAsyncOnChange}
         submitted={props.submitted}
         schema={props.schema.persistAsync.schema}
+        errors={persistAsyncError}
         onBlur={onBlur}
       />
-      {persistAsyncError && (
-        <Alert type="error">Something went wrong, please try again later!</Alert>
-      )}
+      {fallbackError && <Alert type="error">Something went wrong, please try again later!</Alert>}
     </>
   );
 };
@@ -98,8 +101,10 @@ PersistAsyncSchema.propTypes = {
 };
 
 PersistAsyncSchema.defaultProps = {
+  model: null,
   translations: {},
   host: '',
+  required: false,
 };
 
 export default PersistAsyncSchema;
