@@ -3,7 +3,7 @@ import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { withA11y } from '@storybook/addon-a11y';
-import NeptuneProvider from '../src/common/neptuneProvider';
+import NeptuneProvider from '../src/neptuneProvider';
 
 import theme from './common/theme';
 import '@transferwise/neptune-css/dist/css/neptune.css';
@@ -48,7 +48,7 @@ addDecorator(
 );
 addDecorator(CenterDecorator);
 addDecorator(StrictModeDecorator);
-addDecorator((storyFn) => <NeptuneProvider locale="en">{storyFn()}</NeptuneProvider>);
+addDecorator((storyFn) => <NeptuneProvider locale="fr">{storyFn()}</NeptuneProvider>);
 addParameters({
   options: {
     theme,
