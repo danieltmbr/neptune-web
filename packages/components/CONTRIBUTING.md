@@ -56,6 +56,13 @@ Before submitting a PR you should ensure:
 
 If you've added a new component, it's a good idea to try using it in a fresh create react app / nextjs environment. To do this you'll need to make use of `yarn link`, to ensure the app depends on your local code and not the last published package.
 
+### Visual Regression testing.
+We haven't integrated yet a visual testing tool officially but it's possible to run a visual regression manually for your branch changes to increase your confidence in the release.
+The regression is integrated with CI in order to run your test:
+- open a PR
+- manually approve the visual regression check at the end of the PR page.
+
+
 # Documentation
 
 We document our components in the `docs` package. This documentation will be published to [our public docs site](https://transferwise.github.io/neptune-web/) when your changes are merged.

@@ -10,8 +10,8 @@ export default {
 export const basic = () => (
   <>
     <Alert type="error">
-      This page is used only for visual regression testing. We DO NOT garantee support for the
-      elements used on this page. Please DO NOT use as reference
+      This page is used only for visual regression testing. We DO NOT guarantee support for the
+      elements used on this page. Please DO NOT use as reference.
     </Alert>
     <div className="m-t-5" dangerouslySetInnerHTML={{ __html: Object.values(components) }} />
   </>

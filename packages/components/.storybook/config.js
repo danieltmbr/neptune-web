@@ -55,7 +55,7 @@ addParameters({
 });
 
 const requires = [require.context('../src', true, /\.story\.js$/)];
-if (process.env.NODE_ENV === 'visual-regression') {
+if (process.env.CI) {
   requires.push(require.context('../test', true, /\.story\.js$/));
 }
 

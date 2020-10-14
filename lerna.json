@@ -11,6 +11,7 @@
         "**/*.story.js",
         "**/.storybook/**",
         "**/neptuneCssTest/**",
+        "**/test/**",
         "packages/docs",
         "lerna.json"
       ]
