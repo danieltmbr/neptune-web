@@ -38,8 +38,8 @@ const BasicTypeSchema = (props) => {
   const onBlur = () => {
     setFocused(false);
     setBlurred(true);
-    if (props.setBlurred) {
-      props.setBlurred(true);
+    if (props.onBlur) {
+      props.onBlur();
     }
   };
 
@@ -150,7 +150,7 @@ BasicTypeSchema.propTypes = {
   required: Types.bool,
   locale: Types.string,
   disabled: Types.bool,
-  setBlurred: Types.func,
+  onBlur: Types.func,
 };
 
 BasicTypeSchema.defaultProps = {

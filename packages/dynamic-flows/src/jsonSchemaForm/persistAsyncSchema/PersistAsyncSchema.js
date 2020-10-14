@@ -2,42 +2,52 @@ import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { Alert } from '@transferwise/components';
 import BasicTypeSchema from '../basicTypeSchema';
+import { getValidationFailures } from '../../common/validation/validation-failures';
 
 const PersistAsyncSchema = (props) => {
+  const [model, setModel] = useState(props.model);
+  const [persistAsyncInProgress, setPersistAsyncInProgress] = useState(false)
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const [persistAsyncError, setPersistAsyncError] = useState(false);
-  const [blurred, setBlurred] = useState(false);
+
+  const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
+    setPersistAsyncInProgress(true);
+    const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
+    const response = await fetch(`${props.host}${persistAsyncSpec.url}`, {
+      method: persistAsyncSpec.method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    });
+    const responseJson = await response.json();
+    const idPropertyValue = responseJson[props.schema.persistAsync.idProperty];
+    if (idPropertyValue) {
+      setModel(idPropertyValue);
+      props.onChange(idPropertyValue, props.schema);
+    } else {
+      setPersistAsyncError(true);
+    }
+    setPersistAsyncInProgress(false);
+    return idPropertyValue;
+  };
 
   useEffect(() => {
-    const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
-      const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
-      const response = await fetch(`${props.host}${persistAsyncSpec.url}`, {
-        method: persistAsyncSpec.method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-      const responseJson = await response.json();
-      const idPropertyValue = responseJson[props.schema.persistAsync.idProperty];
-      if (idPropertyValue) {
-        props.onChange(idPropertyValue, props.schema);
-      } else {
-        setPersistAsyncError(true);
-      }
-    };
-
-    if (blurred) {
+    const validationFailures = getValidationFailures(model, props.schema, props.required);
+    if (props.submitted && validationFailures.length > 0 && !persistAsyncInProgress) {
       getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
-    } else {
-      setPersistAsyncError(false);
     }
-  }, [blurred]);
+  }, [props.submitted]);
+
+  const onBlur = () => {
+    if (!props.submitted && !persistAsyncInProgress) {
+      getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
+    }
+  };
 
   const persistAsyncOnChange = (newPersistAsyncModel) => {
     setPersistAsyncError(false);
     setPersistAsyncModel(newPersistAsyncModel);
-    setBlurred(false);
   };
 
   return (
@@ -46,7 +56,7 @@ const PersistAsyncSchema = (props) => {
         onChange={persistAsyncOnChange}
         submitted={props.submitted}
         schema={props.schema.persistAsync.schema}
-        setBlurred={setBlurred}
+        onBlur={onBlur}
       />
       {persistAsyncError && (
         <Alert type="error">Something went wrong, please try again later!</Alert>
@@ -84,6 +94,7 @@ PersistAsyncSchema.propTypes = {
   submitted: Types.bool.isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.bool]),
   host: Types.string,
+  required: Types.bool,
 };
 
 PersistAsyncSchema.defaultProps = {
