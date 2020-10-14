@@ -230,10 +230,10 @@ workflows:
           requires:
             - hold-visual-regression-for-branch
           filters:
-          branches:
-            ignore:
-              - gh-pages
-              - main
+            branches:
+              ignore:
+                - gh-pages
+                - main
 
       - publish:
           context: frontend-publish
