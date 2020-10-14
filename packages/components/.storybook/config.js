@@ -55,7 +55,7 @@ addParameters({
 });
 
 const requires = [require.context('../src', true, /\.story\.js$/)];
-if (process.env.CI) {
+if (process.env.percy) {
   requires.push(require.context('../test', true, /\.story\.js$/));
 }
 
