@@ -1,0 +1,18 @@
+.tw-size-swapper {
+    &__first_container {
+      display: flex;
+      justify-content: center;
+    }
+    &__second_container {
+      display: none;
+    }
+  }
+  
+  .tw-size-swapper[min-width~="768px"] {
+    .tw-size-swapper__first_container {
+      display: none;
+    }
+    .tw-size-swapper__second_container {
+      display: block;
+    }
+  }
