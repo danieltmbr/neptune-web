@@ -91,6 +91,11 @@ jobs:
       - run: *test
       - *persist-workspace
 
+  push-translations-to-crowdin:
+    <<: *container
+    steps:
+      - *attach-workspace
+
   deploy-docs:
     <<: *container
     steps:
@@ -186,7 +191,15 @@ workflows:
             branches:
               only:
                 - main
-
+      - push-translations-to-crowdin:
+          type: approval
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+                - develop
+                - next
+                - main
       - publish:
           context: frontend-publish
           requires:
