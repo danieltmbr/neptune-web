@@ -46,7 +46,7 @@ aliases:
     command: yarn test
 
   - &visual-regression
-    name: Visual Regressiomn test
+    name: Visual Regression test
     command: yarn visual-regression
 
   - &add-npm-release-token
@@ -96,6 +96,13 @@ jobs:
       - *persist-workspace
 
   visual-regression:
+    <<: *container
+    steps:
+      - *attach-workspace
+      - run: *visual-regression
+      - *persist-workspace
+
+  visual-regression-for-branch:
     <<: *container
     steps:
       - *attach-workspace
@@ -197,11 +204,12 @@ workflows:
             branches:
               only:
                 - main
-
+      # Always run on main.
       - visual-regression:
           context: frontend-build
           requires:
             - setup
+            - test
           filters:
             branches:
               only:
@@ -212,10 +220,20 @@ workflows:
           requires:
             - test
             - setup
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+                - main
 
       - visual-regression-for-branch:
           requires:
             - hold-visual-regression-for-branch
+          filters:
+          branches:
+            ignore:
+              - gh-pages
+              - main
 
       - publish:
           context: frontend-publish
