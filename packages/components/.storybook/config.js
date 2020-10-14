@@ -55,7 +55,7 @@ addParameters({
 });
 
 const requires = [require.context('../src', true, /\.story\.js$/)];
-if (process.env.percy) {
+if (process.env.STORYBOOK_VISUAL_TEST) {
   requires.push(require.context('../test', true, /\.story\.js$/));
 }
 

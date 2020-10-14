@@ -58,9 +58,9 @@ If you've added a new component, it's a good idea to try using it in a fresh cre
 
 ### Visual Regression testing.
 We haven't integrated yet a visual testing tool officially but it's possible to run a visual regression manually for your branch. To run the test:
-- export CHROMATIC_PROJECT_TOKEN=<neptune-chromatic-token>
+- export PERCY_TOKEN=<your-percy-token-here>
 - yarn visual-regression
-- Check the results on chromatic
+- Check the results on percy
 
 # Documentation
 
