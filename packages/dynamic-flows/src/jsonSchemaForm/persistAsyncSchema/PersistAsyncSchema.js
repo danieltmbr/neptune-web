@@ -10,8 +10,9 @@ const PersistAsyncSchema = (props) => {
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
-    setFieldSubmitted(true);
+    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
+    props.onPersistAsyncStart(requestBody, persistAsyncSpec);
     const response = await fetch(`${props.host}${persistAsyncSpec.url}`, {
       method: persistAsyncSpec.method,
       headers: {
@@ -28,6 +29,7 @@ const PersistAsyncSchema = (props) => {
     } else {
       setPersistAsyncError('Something went wrong, please try again later!');
     }
+    props.onPersistAsyncEnd(responseJson, persistAsyncSpec);
   };
 
   // TODO: add onfocus
@@ -46,11 +48,6 @@ const PersistAsyncSchema = (props) => {
     setPersistAsyncError(null);
     setPersistAsyncModel(newPersistAsyncModel);
   };
-
-  // TODO:
-  // allow consumer to add blocking behaviour by adding
-  // onPersistAsyncStart
-  // onPersistAsyncStop
 
   return (
     <>
@@ -93,10 +90,11 @@ PersistAsyncSchema.propTypes = {
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,
   host: Types.string,
+  onPersistAsyncStart: Types.func.isRequired,
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 PersistAsyncSchema.defaultProps = {
-  model: null,
   translations: {},
   host: '',
 };

@@ -8,7 +8,18 @@
   "properties": {
     "number": {
       "type": "string",
-      "title": "Number input"
+      "title": "Number input",
+      "persistAsync": {
+        "method": "POST",
+        "url": "/v1/cards",
+        "param": "cardNumber",
+        "idProperty": "cardToken",
+        "schema": {
+          "title": "Card Number",
+          "format": "base64url",
+          "type": "string"
+        }
+      }
     },
     "string": {
       "type": "string",

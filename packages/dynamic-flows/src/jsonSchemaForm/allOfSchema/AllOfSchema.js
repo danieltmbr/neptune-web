@@ -54,6 +54,8 @@ const AllOfSchema = (props) => {
               submitted={props.submitted}
               disabled={props.disabled}
               host={props.host}
+              onPersistAsyncStart={props.onPersistAsyncStart}
+              onPersistAsyncEnd={props.onPersistAsyncEnd}
             />
           </div>
         ))}
@@ -77,6 +79,8 @@ AllOfSchema.propTypes = {
   submitted: Types.bool.isRequired,
   disabled: Types.bool,
   host: Types.string,
+  onPersistAsyncStart: Types.func.isRequired,
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 AllOfSchema.defaultProps = {

@@ -17,10 +17,9 @@ const GenericSchemaForm = (props) => {
   const isAllOf = !!schema.allOf;
   const isPersistAsync = !!schema.persistAsync;
   const isBasicType =
-    basicTypes.indexOf(schema.type) >= 0 ||
+    (basicTypes.indexOf(schema.type) >= 0 && !schema.persistAsync) ||
     !!schema.enum ||
-    !!schema.const ||
-    !!schema.persistAsync;
+    !!schema.const;
 
   return (
     <>
@@ -50,6 +49,8 @@ GenericSchemaForm.propTypes = {
   submitted: Types.bool.isRequired,
   hideTitle: Types.bool,
   disabled: Types.bool,
+  onPersistAsyncStart: Types.func.isRequired,
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 GenericSchemaForm.defaultProps = {

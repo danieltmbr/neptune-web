@@ -49,6 +49,18 @@ JsonSchemaForm.propTypes = {
    * The host to call for specs like persist async and validation async.
    */
   host: Types.string,
+  /**
+   * Fires when any internal persist async is triggered and API call is underway.
+   *
+   * Provides 2 params: the object to be persisted and the schema of the persist async field.
+   */
+  onPersistAsyncStart: Types.func.isRequired,
+  /**
+   * Fires when any internal persist async finishes.
+   *
+   * Provides 2 params: the response of the persist async call and the schema of the persist async field.
+   */
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 JsonSchemaForm.defaultProps = {

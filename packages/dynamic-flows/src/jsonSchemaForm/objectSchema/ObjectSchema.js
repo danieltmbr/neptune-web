@@ -64,6 +64,8 @@ const ObjectSchema = (props) => {
               required={isRequired(propertyName)}
               disabled={props.disabled}
               host={props.host}
+              onPersistAsyncStart={props.onPersistAsyncStart}
+              onPersistAsyncEnd={props.onPersistAsyncEnd}
             />
           </div>
         ))}
@@ -95,6 +97,8 @@ ObjectSchema.propTypes = {
   hideTitle: Types.bool,
   disabled: Types.bool,
   host: Types.string,
+  onPersistAsyncStart: Types.func.isRequired,
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 ObjectSchema.defaultProps = {
