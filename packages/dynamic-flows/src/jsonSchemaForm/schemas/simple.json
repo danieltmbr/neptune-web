@@ -7,7 +7,7 @@
   },
   "properties": {
     "number": {
-      "type": "string",
+      "type": "number",
       "title": "Number input"
     },
     "string": {

@@ -32,12 +32,8 @@ const PersistAsyncSchema = (props) => {
     props.onPersistAsyncEnd(responseJson, persistAsyncSpec);
   };
 
-  // TODO: add onfocus
-
   const onBlur = () => {
-    if (!props.submitted) {
-      getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
-    }
+    getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
   };
 
   const persistAsyncOnChange = (newPersistAsyncModel, triggerSchema) => {
