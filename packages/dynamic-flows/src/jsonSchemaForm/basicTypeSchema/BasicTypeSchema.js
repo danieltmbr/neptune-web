@@ -13,6 +13,9 @@ const BasicTypeSchema = (props) => {
   const onChange = (newModel) => {
     setChanged(true);
     setModelAndBroadcast(sanitiseModel(newModel));
+
+    // TODO: also trigger onblur for fileupload
+    // props.schema.format
   };
 
   const getValidationKeys = (newModel) =>

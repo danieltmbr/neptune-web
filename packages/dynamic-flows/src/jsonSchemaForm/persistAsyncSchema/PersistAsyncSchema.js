@@ -12,8 +12,10 @@ const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const [persistAsyncError, setPersistAsyncError] = useState(null);
   const [fallbackError, setFallbackError] = useState(false);
+  const [fieldSubmitted, setFieldSubmitted] = useState(false);
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
+    setFieldSubmitted(true);
     setPersistAsyncInProgress(true);
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
     const response = await fetch(`${props.host}${persistAsyncSpec.url}`, {
@@ -35,6 +37,7 @@ const PersistAsyncSchema = (props) => {
     }
   };
 
+  // TODO: get rid of this
   useEffect(() => {
     const validationFailures = getValidationFailures(model, props.schema, props.required);
     if (props.submitted && validationFailures.length > 0 && !persistAsyncInProgress) {
@@ -42,27 +45,39 @@ const PersistAsyncSchema = (props) => {
     }
   }, [props.submitted]);
 
+  // TODO: add onfocus
+
   const onBlur = () => {
     if (!props.submitted && !persistAsyncInProgress) {
       getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
     }
   };
 
-  const persistAsyncOnChange = (newPersistAsyncModel) => {
+  const persistAsyncOnChange = (newPersistAsyncModel, triggerSchema) => {
+    console.log(newPersistAsyncModel, 'model')
+
+    // TODO: add different handling for file upload, do persist async on change instead of onblur
+
     setFallbackError(false);
     setPersistAsyncError(null);
     setPersistAsyncModel(newPersistAsyncModel);
   };
 
+  // TODO:
+  // allow consumer to add blocking behaviour by adding
+  // onPersistAsyncStart
+  // onPersistAsyncStop
+
   return (
     <>
       <BasicTypeSchema
         onChange={persistAsyncOnChange}
-        submitted={props.submitted}
+        submitted={props.submitted || fieldSubmitted}
         schema={props.schema.persistAsync.schema}
         errors={persistAsyncError}
         onBlur={onBlur}
       />
+      {/*TODO: refactor to pass in as persistAsyncError*/}
       {fallbackError && <Alert type="error">Something went wrong, please try again later!</Alert>}
     </>
   );
