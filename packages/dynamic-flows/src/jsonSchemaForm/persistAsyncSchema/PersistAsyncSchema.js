@@ -8,8 +8,16 @@ const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const [persistAsyncError, setPersistAsyncError] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
+  const [controller, setController] = useState(null);
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
+    if (controller) {
+      controller.abort();
+    }
+    const currentController = new AbortController();
+    const { signal } = currentController;
+    setController(currentController);
+
     setFieldSubmitted(true); // persist async initiated implied the field has been submitted
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
     props.onPersistAsyncStart(requestBody, persistAsyncSpec);
@@ -19,6 +27,7 @@ const PersistAsyncSchema = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
+      signal,
     });
     const responseJson = await response.json();
     const idPropertyValue = responseJson[props.schema.persistAsync.idProperty];
