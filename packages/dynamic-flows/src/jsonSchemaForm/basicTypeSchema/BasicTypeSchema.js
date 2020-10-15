@@ -14,8 +14,10 @@ const BasicTypeSchema = (props) => {
     setChanged(true);
     setModelAndBroadcast(sanitiseModel(newModel));
 
-    // TODO: also trigger onblur for fileupload
-    // props.schema.format
+    // Upload wrapped in persist async
+    if (props.schema.format === 'base64url' && props.onBlur) {
+      props.onBlur();
+    }
   };
 
   const getValidationKeys = (newModel) =>
