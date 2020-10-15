@@ -8,6 +8,7 @@ const NeptuneProvider = ({ locale, children }) => {
   const intl = createIntl(
     {
       locale,
+      defaultLocale: 'en',
       messages: messages[locale],
     },
     cache,
