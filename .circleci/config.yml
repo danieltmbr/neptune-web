@@ -45,6 +45,10 @@ aliases:
     name: Test packages
     command: yarn test
 
+  - &visual-regression
+    name: Visual Regressiomn test
+    command: yarn visual-regression
+
   - &add-npm-release-token
     name: Set NPM publish token
     command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN_PUBLISH" >> ~/.npmrc
@@ -89,6 +93,13 @@ jobs:
     steps:
       - *attach-workspace
       - run: *test
+      - *persist-workspace
+
+  visual-regression:
+    <<: *container
+    steps:
+      - *attach-workspace
+      - run: *visual-regression
       - *persist-workspace
 
   deploy-docs:
@@ -185,6 +196,35 @@ workflows:
           filters:
             branches:
               only:
+                - main
+
+      - visual-regression:
+          context: frontend-build
+          requires:
+            - setup
+          filters:
+            branches:
+              only:
+                - main
+
+      - hold-visual-regression-for-branch:
+          type: approval
+          requires:
+            - test
+            - setup
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+                - main
+
+      - visual-regression-for-branch:
+          requires:
+            - hold-visual-regression-for-branch
+          filters:
+            branches:
+              ignore:
+                - gh-pages
                 - main
 
       - publish:
