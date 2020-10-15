@@ -1,13 +1,11 @@
 import React from 'react';
 import Types from 'prop-types';
 import classnames from 'classnames';
-import { useIntl, FormattedMessage } from 'react-intl';
 import { Size } from '../common';
 
 import './Loader.css';
 
-function Loader(props) {
-  const intl = useIntl();
+const Loader = (props) => {
   const { small, size, classNames } = props;
   const style = (className) => classNames[className] || className;
 
@@ -18,8 +16,6 @@ function Loader(props) {
       className={classnames(style('tw-loader'), style(`tw-loader--${legacySize}`))}
       data-testid={props['data-testid']}
     >
-      <FormattedMessage id="np.c9n.aria.lbl.close" />
-      {intl.formatMessage({ id: 'np.c9n.aria.lbl.close' })}
       {Array(5)
         .fill()
         .map((item, index) => (
@@ -28,8 +24,7 @@ function Loader(props) {
         ))}
     </div>
   );
-}
-
+};
 Loader.Size = Size;
 
 Loader.propTypes = {

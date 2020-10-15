@@ -1,7 +1,6 @@
 import React from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 
 import { ChevronLeft, ChevronRight } from '@transferwise/icons';
 
@@ -23,7 +22,6 @@ const Pagination = ({
   canFetchMorePages,
   className,
 }) => {
-  const intl = useIntl();
   const showArrows = type !== Type.NUMBERS_ONLY;
   const disableLeftArrow = currentPageIndex === 0;
   const disableRightArrow = !canFetchMorePages && currentPageIndex === numberOfPages - 1;
@@ -84,7 +82,7 @@ const Pagination = ({
   }
 
   return (
-    <nav role="navigation" aria-label={intl.formatMessage({ id: 'np.pn.aria.lbl.close' })}>
+    <nav role="navigation" aria-label="Pagination navigation">
       <ul className={classNames('tw-pagination', className)}>
         {showArrows && (
           <PaginationLink
