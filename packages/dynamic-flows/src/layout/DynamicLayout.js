@@ -17,7 +17,15 @@ import DynamicReview from './review';
 import { componentModel } from './models';
 
 const DynamicLayout = (props) => {
-  const { components, onModelChange, onAction, submitted, errors } = props;
+  const {
+    components,
+    onModelChange,
+    onAction,
+    submitted,
+    errors,
+    onPersistAsyncStart,
+    onPersistAsyncEnd,
+  } = props;
 
   const getKey = (component) => JSON.stringify(component);
 
@@ -46,6 +54,8 @@ const DynamicLayout = (props) => {
             onAction={onAction}
             submitted={submitted}
             errors={errors}
+            onPersistAsyncStart={onPersistAsyncStart}
+            onPersistAsyncEnd={onPersistAsyncEnd}
           />
         );
       case 'form':
@@ -56,6 +66,8 @@ const DynamicLayout = (props) => {
             onModelChange={onModelChange}
             submitted={submitted}
             errors={errors}
+            onPersistAsyncStart={onPersistAsyncStart}
+            onPersistAsyncEnd={onPersistAsyncEnd}
           />
         );
       case 'button':
@@ -69,6 +81,8 @@ const DynamicLayout = (props) => {
             onAction={onAction}
             submitted={submitted}
             errors={errors}
+            onPersistAsyncStart={onPersistAsyncStart}
+            onPersistAsyncEnd={onPersistAsyncEnd}
           />
         );
       case 'decision':
@@ -89,6 +103,8 @@ DynamicLayout.propTypes = {
   components: Types.arrayOf(componentModel).isRequired,
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
+  onPersistAsyncStart: Types.func.isRequired,
+  onPersistAsyncEnd: Types.func.isRequired,
 };
 
 DynamicLayout.defaultProps = {

@@ -42,8 +42,20 @@ describe('Given a component for rendering object schemas', () => {
 
   beforeEach(() => {
     const onChange = jest.fn();
+    const onPersistAsyncStart = jest.fn();
+    const onPersistAsyncEnd = jest.fn();
 
-    props = { schema, model, errors, locale, onChange, submitted, translations };
+    props = {
+      schema,
+      model,
+      errors,
+      locale,
+      onChange,
+      submitted,
+      translations,
+      onPersistAsyncStart,
+      onPersistAsyncEnd,
+    };
     component = shallow(<ObjectSchema {...props} />);
 
     genericSchemaComponents = component.find(GenericSchema);

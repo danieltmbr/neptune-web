@@ -10,6 +10,8 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
   let schema;
   let errors;
   let onChange;
+  let onPersistAsyncStart;
+  let onPersistAsyncEnd;
 
   const stringSchema = {
     title: 'Label',
@@ -70,6 +72,8 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     };
 
     onChange = jest.fn();
+    onPersistAsyncStart = jest.fn();
+    onPersistAsyncEnd = jest.fn();
     errors = {
       string: 'Error',
     };
@@ -78,7 +82,17 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     const locale = 'en-GB';
     const submitted = false;
     const disabled = false;
-    const props = { schema, model, errors, onChange, submitted, locale, disabled };
+    const props = {
+      schema,
+      model,
+      errors,
+      onChange,
+      submitted,
+      locale,
+      disabled,
+      onPersistAsyncStart,
+      onPersistAsyncEnd,
+    };
     component = mount(<JsonSchemaForm {...props} />);
   });
 

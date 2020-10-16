@@ -8,6 +8,8 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
   let component;
   let onModelChange;
   let onAction;
+  let onPersistAsyncStart;
+  let onPersistAsyncEnd;
 
   const action = {
     url: '/exampe',
@@ -32,6 +34,9 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
   beforeEach(() => {
     onAction = jest.fn();
     onModelChange = jest.fn();
+    onPersistAsyncStart = jest.fn();
+    onPersistAsyncEnd = jest.fn();
+
     component = mount(
       <DynamicLayout
         components={[box]}
@@ -39,6 +44,9 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
         onModelChange={onModelChange}
         submitted
         errors={errors}
+        onPersistAsyncStart={onPersistAsyncStart}
+        onPersistAsyncEnd={onPersistAsyncEnd}
+        onP
       />,
     );
   });

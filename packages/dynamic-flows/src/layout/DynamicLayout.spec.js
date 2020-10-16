@@ -20,6 +20,8 @@ describe('Given a component for rendering a dynamic layout', () => {
   let components;
   let onModelChange;
   let onAction;
+  let onPersistAsyncStart;
+  let onPersistAsyncEnd;
 
   const action = {
     url: '/exampe',
@@ -36,12 +38,22 @@ describe('Given a component for rendering a dynamic layout', () => {
   beforeEach(() => {
     onAction = jest.fn();
     onModelChange = jest.fn();
+    onPersistAsyncStart = jest.fn();
+    onPersistAsyncEnd = jest.fn();
   });
 
   describe('when there is an alert component', () => {
     beforeEach(() => {
       components = [{ type: 'alert', markdown: '' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
     it('should render an alert', () => {
@@ -55,7 +67,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a box component', () => {
     beforeEach(() => {
       components = [{ type: 'box', components: [] }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
 
       component.find(DynamicBox).simulate('action', action);
@@ -79,7 +99,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a button component', () => {
     beforeEach(() => {
       components = [{ type: 'button', action }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
 
       component.find(DynamicButton).simulate('action', action);
@@ -98,7 +126,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a columns component', () => {
     beforeEach(() => {
       components = [{ type: 'columns', left: [], right: [] }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
 
       component.find(DynamicColumns).first().simulate('action', action);
@@ -122,7 +158,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a decision component', () => {
     beforeEach(() => {
       components = [{ type: 'decision', options: [] }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
 
       component.find(DynamicDecision).simulate('action', action);
@@ -141,7 +185,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a divider component', () => {
     beforeEach(() => {
       components = [{ type: 'divider' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
     it('should render a divider', () => {
@@ -155,7 +207,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a form component', () => {
     beforeEach(() => {
       components = [{ type: 'form', schema: {} }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
 
       component.find(DynamicForm).simulate('modelChange', model, isValid, schema);
@@ -175,7 +235,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a heading component', () => {
     beforeEach(() => {
       components = [{ type: 'heading', text: '' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
 
@@ -190,7 +258,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is an image component', () => {
     beforeEach(() => {
       components = [{ type: 'image', url: '' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
 
@@ -205,7 +281,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is an info component', () => {
     beforeEach(() => {
       components = [{ type: 'info', markdown: '' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
 
@@ -220,7 +304,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a paragraph component', () => {
     beforeEach(() => {
       components = [{ type: 'paragraph', text: '' }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
     });
 
@@ -235,7 +327,15 @@ describe('Given a component for rendering a dynamic layout', () => {
   describe('when there is a review component', () => {
     beforeEach(() => {
       components = [{ type: 'review', definitions: [] }];
-      const props = { components, onAction, onModelChange, submitted: false, errors: {} };
+      const props = {
+        components,
+        onAction,
+        onModelChange,
+        submitted: false,
+        errors: {},
+        onPersistAsyncStart,
+        onPersistAsyncEnd,
+      };
       component = shallow(<DynamicLayout {...props} />);
       component.find(DynamicReview).simulate('action', action);
     });

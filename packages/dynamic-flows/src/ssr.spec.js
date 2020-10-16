@@ -28,6 +28,8 @@ describe('Server side rendering', () => {
       type: 'string',
       label: 'hello',
     },
+    onPersistAsyncStart: jest.fn(),
+    onPersistAsyncEnd: jest.fn(),
   };
   const overrideProps = {};
 
