@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Types from 'prop-types';
 import BasicTypeSchema from '../basicTypeSchema';
-
-const ERROR_KEY = 'error';
+import {isStatus2xx} from "../../common/api/utils";
 
 const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
@@ -31,10 +30,10 @@ const PersistAsyncSchema = (props) => {
     });
     const responseJson = await response.json();
     const idPropertyValue = responseJson[props.schema.persistAsync.idProperty];
-    if (idPropertyValue) {
+    if (isStatus2xx(response.status) && idPropertyValue) {
       props.onChange(idPropertyValue, props.schema);
-    } else if (responseJson[ERROR_KEY]) {
-      setPersistAsyncError(responseJson[ERROR_KEY]);
+    } else if (!isStatus2xx(response.status) && idPropertyValue) {
+      setPersistAsyncError(idPropertyValue);
     } else {
       setPersistAsyncError('Something went wrong, please try again later!');
     }
