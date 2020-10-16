@@ -9,6 +9,11 @@ const PersistAsyncSchema = (props) => {
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
   const [controller, setController] = useState(null);
 
+  if (props.schema.persistAsync.schema.format === 'base64url') {
+    // TODO: Add support for base64url format
+    throw new Error('Not implemented');
+  }
+
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
     if (controller) {
       controller.abort();
@@ -29,7 +34,7 @@ const PersistAsyncSchema = (props) => {
       signal,
     });
     const responseJson = await response.json();
-    const idPropertyValue = responseJson[props.schema.persistAsync.idProperty];
+    const idPropertyValue = responseJson[props.schema.persistAsync.idProperty]; // doubles as the value and error
     if (isStatus2xx(response.status) && idPropertyValue) {
       props.onChange(idPropertyValue, props.schema);
     } else if (!isStatus2xx(response.status) && idPropertyValue) {
@@ -44,9 +49,8 @@ const PersistAsyncSchema = (props) => {
     getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
   };
 
-  const persistAsyncOnChange = (newPersistAsyncModel, triggerSchema) => {
+  const persistAsyncOnChange = (newPersistAsyncModel) => {
     // TODO: add different handling for file upload, do persist async on change instead of onblur
-
     setPersistAsyncError(null);
     setPersistAsyncModel(newPersistAsyncModel);
   };

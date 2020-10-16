@@ -52,7 +52,6 @@ describe('Given a component for rendering persist async schemas', () => {
           break;
         case '666666':
           response = getMockFetchPromise(422, { anIdProperty: 'Invalid param!' });
-          delay = 5;
           break;
         default:
           response = getMockFetchPromise(500, {});
@@ -104,54 +103,97 @@ describe('Given a component for rendering persist async schemas', () => {
 
     describe('when the field value is valid', () => {
       describe('when a persist async is triggered', () => {
-        beforeEach(() => {
-          const formControl = component
-            .find(PersistAsyncSchema)
-            .find(BasicTypeSchema)
-            .find(SchemaFormControl);
-          formControl.simulate('change', { target: { value: '777777' } });
-          formControl.simulate('blur');
-        });
-
-        it('should trigger onPersistAsyncStart correctly', () => {
-          expect(onPersistAsyncStart).toHaveBeenCalledTimes(1);
-          expect(onPersistAsyncStart).toHaveBeenCalledWith(
-            { aParam: '777777' },
-            schema.persistAsync,
-          );
-        });
-
-        it('should trigger onPersistAsyncEnd correctly', () => {
-          expect(onPersistAsyncEnd).toHaveBeenCalledTimes(1);
-          expect(onPersistAsyncEnd).toHaveBeenCalledWith(
-            { anIdProperty: 'some-resp-12345' },
-            schema.persistAsync,
-          );
-        });
-
         describe('when the request is successful', () => {
-          it('should make the persist async call', () => {});
+          beforeEach(() => {
+            const formControl = component
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema)
+              .find(SchemaFormControl);
+            formControl.simulate('change', { target: { value: '777777' } });
+            formControl.simulate('blur');
+          });
 
-          it('should make the persist async call with the correct request', () => {});
+          it('should trigger onPersistAsyncStart correctly', () => {
+            expect(onPersistAsyncStart).toHaveBeenCalledTimes(1);
+            expect(onPersistAsyncStart).toHaveBeenCalledWith(
+              { aParam: '777777' },
+              schema.persistAsync,
+            );
+          });
 
-          it('should extract the value out of the response using idProperty', () => {});
+          it('should trigger onPersistAsyncEnd correctly', () => {
+            expect(onPersistAsyncEnd).toHaveBeenCalledTimes(1);
+            expect(onPersistAsyncEnd).toHaveBeenCalledWith(
+              { anIdProperty: 'some-resp-12345' },
+              schema.persistAsync,
+            );
+          });
 
-          it('should broadcast the persist async response value', () => {});
+          it('should broadcast the persist async response value', () => {
+            expect(onChange).toHaveBeenCalledTimes(1);
+            expect(onChange).toHaveBeenCalledWith('some-resp-12345', schema);
+          });
         });
 
         describe('when the request fails with 422 error', () => {
-          it('should render the error', () => {});
+          beforeEach(() => {
+            const formControl = component
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema)
+              .find(SchemaFormControl);
+            formControl.simulate('change', { target: { value: '666666' } });
+            formControl.simulate('blur');
+          });
+
+          it('should pass down the error', () => {
+            const basicTypeSchema = component
+              .update()
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema);
+            expect(basicTypeSchema.prop('errors')).toEqual('Invalid param!');
+          });
         });
 
         describe('when the request fails without error', () => {
-          it('should render fallback error message', () => {});
+          beforeEach(() => {
+            const formControl = component
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema)
+              .find(SchemaFormControl);
+            formControl.simulate('change', { target: { value: '999999' } });
+            formControl.simulate('blur');
+          });
+
+          it('should render fallback error message', () => {
+            const basicTypeSchema = component
+              .update()
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema);
+            expect(basicTypeSchema.prop('errors')).toEqual(
+              'Something went wrong, please try again later!',
+            );
+          });
         });
 
         describe('when a second request is triggered', () => {
-          it('should cancel the existing request', () => {});
+          beforeEach(() => {
+            const formControl = component
+              .find(PersistAsyncSchema)
+              .find(BasicTypeSchema)
+              .find(SchemaFormControl);
+            formControl.simulate('change', { target: { value: '888888' } });
+            formControl.simulate('blur');
+
+            formControl.simulate('change', { target: { value: '777777' } });
+            formControl.simulate('blur');
+          });
 
           describe('when the first request returns slower than the second request', () => {
-            it('should still broadcast the result from the second request', () => {});
+            it('should still broadcast the result from the second request', () => {
+              expect(onChange).toHaveBeenCalledTimes(1);
+
+              expect(onChange).toHaveBeenCalledWith('some-resp-12345', schema);
+            });
           });
         });
       });
