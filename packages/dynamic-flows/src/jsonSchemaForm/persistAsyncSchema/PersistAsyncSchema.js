@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Types from 'prop-types';
 import BasicTypeSchema from '../basicTypeSchema';
-import {isStatus2xx} from "../../common/api/utils";
+import { isStatus2xx } from '../../common/api/utils';
 
 const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
@@ -45,8 +45,6 @@ const PersistAsyncSchema = (props) => {
   };
 
   const persistAsyncOnChange = (newPersistAsyncModel, triggerSchema) => {
-    console.log(newPersistAsyncModel, 'model');
-
     // TODO: add different handling for file upload, do persist async on change instead of onblur
 
     setPersistAsyncError(null);
