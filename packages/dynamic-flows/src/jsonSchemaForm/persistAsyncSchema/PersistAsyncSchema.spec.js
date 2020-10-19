@@ -1,8 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import PersistAsyncSchema from './PersistAsyncSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import SchemaFormControl from '../schemaFormControl';
+
+const wait = (t) => {
+  return act(() => {
+    return new Promise((resolve) => setTimeout(resolve, t));
+  });
+};
 
 describe('Given a component for rendering persist async schemas', () => {
   let onChange;
@@ -30,44 +37,56 @@ describe('Given a component for rendering persist async schemas', () => {
   const submitted = false;
   const host = 'http://trwi.se';
 
-  const getMockFetchPromise = (status, mockResponse) => {
-    return Promise.resolve({
+  const getMockFetchPromise = (status, mockResponse, delay, signal) => {
+    const response = {
       status,
       json: () => Promise.resolve(mockResponse),
+    };
+    return new Promise((resolve) => {
+      let aborted = false;
+      if (signal) {
+        signal.addEventListener('abort', () => {
+          aborted = true;
+        });
+      }
+      setTimeout(() => {
+        return !aborted && resolve(response);
+      }, delay);
     });
   };
 
   const initialiseMockPersistAsyncEndpoint = () => {
     jest.spyOn(global, 'fetch').mockImplementation((input, init) => {
       let response;
-      let delay = 0;
+
       switch (JSON.parse(init.body)[param]) {
         case '777777':
-          response = getMockFetchPromise(200, { anIdProperty: 'some-resp-12345' });
-          delay = 5;
+          response = getMockFetchPromise(200, { anIdProperty: 'some-resp-12345' }, 5, init.signal);
           break;
         case '888888':
-          response = getMockFetchPromise(200, { anIdProperty: 'other-resp-54321' });
-          delay = 10;
+          response = getMockFetchPromise(
+            200,
+            { anIdProperty: 'other-resp-54321' },
+            100,
+            init.signal,
+          );
           break;
         case '666666':
-          response = getMockFetchPromise(422, { anIdProperty: 'Invalid param!' });
+          response = getMockFetchPromise(422, { anIdProperty: 'Invalid param!' }, 0, init.signal);
           break;
         default:
-          response = getMockFetchPromise(500, {});
+          response = getMockFetchPromise(500, {}, 0, init.signal);
       }
-      jest.advanceTimersByTime(delay);
       return response;
     });
   };
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    initialiseMockPersistAsyncEndpoint();
-
     onChange = jest.fn();
     onPersistAsyncStart = jest.fn();
     onPersistAsyncEnd = jest.fn();
+
+    initialiseMockPersistAsyncEndpoint();
 
     props = {
       schema,
@@ -78,10 +97,6 @@ describe('Given a component for rendering persist async schemas', () => {
       submitted,
       host,
     };
-  });
-
-  afterEach(() => {
-    jest.useRealTimers();
   });
 
   describe('when the supplied props are valid', () => {
@@ -121,7 +136,8 @@ describe('Given a component for rendering persist async schemas', () => {
             );
           });
 
-          it('should trigger onPersistAsyncEnd correctly', () => {
+          it('should trigger onPersistAsyncEnd correctly', async () => {
+            await wait(5);
             expect(onPersistAsyncEnd).toHaveBeenCalledTimes(1);
             expect(onPersistAsyncEnd).toHaveBeenCalledWith(
               { anIdProperty: 'some-resp-12345' },
@@ -129,7 +145,8 @@ describe('Given a component for rendering persist async schemas', () => {
             );
           });
 
-          it('should broadcast the persist async response value', () => {
+          it('should broadcast the persist async response value', async () => {
+            await wait(5);
             expect(onChange).toHaveBeenCalledTimes(1);
             expect(onChange).toHaveBeenCalledWith('some-resp-12345', schema);
           });
@@ -145,7 +162,8 @@ describe('Given a component for rendering persist async schemas', () => {
             formControl.simulate('blur');
           });
 
-          it('should pass down the error', () => {
+          it('should pass down the error', async () => {
+            await wait(1);
             const basicTypeSchema = component
               .update()
               .find(PersistAsyncSchema)
@@ -155,7 +173,7 @@ describe('Given a component for rendering persist async schemas', () => {
         });
 
         describe('when the request fails without error', () => {
-          beforeEach(() => {
+          beforeEach(async () => {
             const formControl = component
               .find(PersistAsyncSchema)
               .find(BasicTypeSchema)
@@ -164,7 +182,8 @@ describe('Given a component for rendering persist async schemas', () => {
             formControl.simulate('blur');
           });
 
-          it('should render fallback error message', () => {
+          it('should render fallback error message', async () => {
+            await wait(1);
             const basicTypeSchema = component
               .update()
               .find(PersistAsyncSchema)
@@ -176,7 +195,7 @@ describe('Given a component for rendering persist async schemas', () => {
         });
 
         describe('when a second request is triggered', () => {
-          beforeEach(() => {
+          beforeEach(async () => {
             const formControl = component
               .find(PersistAsyncSchema)
               .find(BasicTypeSchema)
@@ -184,12 +203,15 @@ describe('Given a component for rendering persist async schemas', () => {
             formControl.simulate('change', { target: { value: '888888' } });
             formControl.simulate('blur');
 
+            await wait(1);
+
             formControl.simulate('change', { target: { value: '777777' } });
             formControl.simulate('blur');
           });
 
           describe('when the first request returns slower than the second request', () => {
-            it('should still broadcast the result from the second request', () => {
+            it('should still broadcast the result from the second request', async () => {
+              await wait(200);
               expect(onChange).toHaveBeenCalledTimes(1);
 
               expect(onChange).toHaveBeenCalledWith('some-resp-12345', schema);
