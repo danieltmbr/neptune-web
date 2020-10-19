@@ -1,4 +1,6 @@
 import React from 'react';
+import { select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import Decision from './Decision';
 import Avatar from '../avatar';
 
@@ -8,56 +10,55 @@ export default {
 };
 
 export const basic = () => {
+  const presentation = select('presentation', Decision.Presentation, 'LIST_BLOCK');
   return (
     <Decision
       type="NAVIGATION"
-      presentation="LIST_BLOCK"
+      presentation={presentation}
       options={[
         {
           media: {
             list: (
               <Avatar>
                 <img
-                  src="https://user-images.githubusercontent.com/16908937/96282975-5b58e280-0fd3-11eb-8947-713cb102b79d.jpg"
+                  src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
                   alt=""
                 />
               </Avatar>
             ),
             block: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96282968-57c55b80-0fd3-11eb-9d15-8a37b55d6f2a.jpg"
-                  alt=""
-                />
-              </Avatar>
+              <img
+                src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
+                alt=""
+              />
             ),
           },
-          title: 'translated messqge 1',
-          content: 'translated message 1',
-          onClick: () => console.log('clicked'),
+          title: 'Cat jumps and falls',
+          content:
+            'Cat jumps and falls onto the couch purrs and wakes up in a new dimension filled with kitty litter',
+          onClick: action('clicked'),
         },
         {
           media: {
             list: (
               <Avatar>
                 <img
-                  src="https://user-images.githubusercontent.com/16908937/96282975-5b58e280-0fd3-11eb-8947-713cb102b79d.jpg"
+                  src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
                   alt=""
                 />
               </Avatar>
             ),
             block: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96282968-57c55b80-0fd3-11eb-9d15-8a37b55d6f2a.jpg"
-                  alt=""
-                />
-              </Avatar>
+              <img
+                src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
+                alt=""
+              />
             ),
           },
-          title: 'translated message 2',
-          content: 'translated message 2',
-          onClick: () => console.log('clicked'),
+          title: 'Cat purrs and wakes',
+          content:
+            'Cat jumps and falls onto the couch purrs and wakes up in a new dimension filled with kitty litter',
+          onClick: action('clicked'),
         },
       ]}
     />

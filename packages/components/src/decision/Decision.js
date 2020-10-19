@@ -12,14 +12,18 @@ import Tile from '../tile';
  * */
 
 const Decision = ({ presentation, options, type }) => {
+  let elements = null;
   switch (presentation) {
     case 'LIST_BLOCK':
     case 'LIST_BLOCK_SMALL':
       if (type === 'NAVIGATION') {
-        return options.map(({ title, content, media: { list, block }, onClick }) => (
+        const small = presentation === 'LIST_BLOCK_SMALL';
+        elements = options.map(({ title, content, media: { list, block }, onClick }, key) => (
           <SizeSwapper
+            key={`${title}${Math.random()}`}
             items={[
               <NavigationOption
+                key={`${title}${Math.random()}`}
                 complex={false}
                 href="#"
                 title={title}
@@ -30,10 +34,11 @@ const Decision = ({ presentation, options, type }) => {
                 showMediaCircle
               />,
               <Tile
-                title="title"
+                key={`${title}${Math.random()}`}
+                title={title}
                 content={content}
                 media={block}
-                size={presentation === 'LIST_BLOCK_SMALL' ? 'SMALL' : null}
+                size={small ? Tile.Size.SMALL : null}
                 onClick={onClick}
               />,
             ]}
@@ -41,13 +46,29 @@ const Decision = ({ presentation, options, type }) => {
         ));
       }
       break;
+    // LIST
     default:
+      elements = options.map(({ title, content, media: { list, block }, onClick }) => (
+        <NavigationOption
+          complex={false}
+          href="#"
+          title={title}
+          content={content}
+          onClick={onClick}
+          media={list}
+          showMediaAtAllSizes
+          showMediaCircle
+        />
+      ));
       break;
   }
+  return elements;
 };
 
+Decision.Presentation = ['LIST', 'LIST_BLOCK', 'LIST_BLOCK_SMALL'];
+
 Decision.propTypes = {
-  presentation: Types.oneOf(['LIST', 'LIST_BLOCK', 'LIST_BLOCK_SMALL']),
+  presentation: Types.oneOf(Decision.presentation),
   options: Types.arrayOf(
     Types.shape({
       media: Types.shape({
