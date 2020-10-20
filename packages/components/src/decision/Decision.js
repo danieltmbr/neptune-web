@@ -72,8 +72,8 @@ Decision.propTypes = {
   options: Types.arrayOf(
     Types.shape({
       media: Types.shape({
-        list: Types.oneOf(['<Image>', '<Avatar>']),
-        block: Types.oneOf(['<Image>', '<Avatar>']),
+        list: Types.elementTypeOf(),
+        block: Types.elementTypeOf(),
       }),
       title: Types.oneOf([Types.string]).isRequired,
       content: Types.oneOf([Types.string]).isRequired,
