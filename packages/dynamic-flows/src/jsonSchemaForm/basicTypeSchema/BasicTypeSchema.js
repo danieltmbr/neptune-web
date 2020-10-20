@@ -13,11 +13,6 @@ const BasicTypeSchema = (props) => {
   const onChange = (newModel) => {
     setChanged(true);
     setModelAndBroadcast(sanitiseModel(newModel));
-
-    // Upload wrapped in persist async
-    if (props.schema.format === 'base64url' && props.onBlur) {
-      props.onBlur();
-    }
   };
 
   const getValidationKeys = (newModel) =>

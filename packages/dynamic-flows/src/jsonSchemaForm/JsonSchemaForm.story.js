@@ -45,23 +45,11 @@ export const basic = () => {
       errors={errors}
       locale={locale}
       translations={translations}
-      onChange={(newModel, valid, curSchema) => {
-        console.log(newModel, 'newModel');
-        console.log(valid, 'valid');
-        console.log(curSchema, 'curSchema');
-      }}
+      onChange={action('onChange')}
       submitted={submitted}
       disabled={disabled}
-      onPersistAsyncStart={(request, spec) => {
-        console.log('Persist async started');
-        console.log(request, 'req');
-        console.log(spec, 'spec');
-      }}
-      onPersistAsyncEnd={(response, spec) => {
-        console.log('Persist async ended');
-        console.log(response, 'res');
-        console.log(spec, spec);
-      }}
+      onPersistAsyncStart={() => {}}
+      onPersistAsyncEnd={() => {}}
     />
   );
 };
