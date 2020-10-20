@@ -80,7 +80,9 @@ PersistAsyncSchema.propTypes = {
       url: Types.string,
       param: Types.string,
       idProperty: Types.string,
-      schema: Types.object,
+      schema: Types.shape({
+        format: Types.string,
+      }),
     }),
     enum: Types.arrayOf(Types.oneOfType([Types.string, Types.number, Types.bool])),
     const: Types.oneOfType([Types.string, Types.number, Types.bool]),

@@ -39,7 +39,7 @@ GenericSchemaForm.propTypes = {
     const: Types.oneOfType([Types.string, Types.number, Types.bool]),
     oneOf: Types.arrayOf(Types.shape({})),
     allOf: Types.arrayOf(Types.shape({})),
-    persistAsync: Types.object,
+    persistAsync: Types.shape({}),
   }).isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
   errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
