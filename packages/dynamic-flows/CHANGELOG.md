@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.6.2...@transferwise/dynamic-flows@5.6.3) (2020-10-20)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.6.1...@transferwise/dynamic-flows@5.6.2) (2020-10-19)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.6.0...@transferwise/dynamic-flows@5.6.1) (2020-10-19)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [5.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.5.4...@transferwise/dynamic-flows@5.6.0) (2020-10-15)
+
+
+### Features
+
+* dependencies update([#620](https://github.com/transferwise/neptune-web/issues/620)) ([db7ae74](https://github.com/transferwise/neptune-web/commit/db7ae74c4ce52ef8799478837070f03b04534bbe))
+
+
+
+
+
+## [5.5.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.5.3...@transferwise/dynamic-flows@5.5.4) (2020-10-13)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.5.2...@transferwise/dynamic-flows@5.5.3) (2020-10-13)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.5.1...@transferwise/dynamic-flows@5.5.2) (2020-10-12)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [5.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.5.0...@transferwise/dynamic-flows@5.5.1) (2020-10-12)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 # [5.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@5.4.1...@transferwise/dynamic-flows@5.5.0) (2020-10-07)
 
 
