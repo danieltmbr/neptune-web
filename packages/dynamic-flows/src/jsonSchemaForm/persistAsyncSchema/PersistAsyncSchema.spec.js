@@ -72,7 +72,12 @@ describe('Given a component for rendering persist async schemas', () => {
           );
           break;
         case '666666':
-          response = getMockFetchPromise(422, { anIdProperty: 'Invalid param!' }, 0, init.signal);
+          response = getMockFetchPromise(
+            422,
+            { validation: { anIdProperty: 'Invalid param!' } },
+            0,
+            init.signal,
+          );
           break;
         default:
           response = getMockFetchPromise(500, {}, 0, init.signal);

@@ -60,7 +60,7 @@ const PersistAsyncSchema = (props) => {
 
   const getIdFromResponse = (idProperty, response) => response[idProperty];
 
-  const getErrorFromResponse = (errorProperty, response) => response[errorProperty];
+  const getErrorFromResponse = (errorProperty, response) => response.validation?.[errorProperty];
 
   const onBlur = () => {
     getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
