@@ -344,6 +344,16 @@ describe('Given a component for rendering any generic schema', () => {
       expect(component.find(PersistAsyncSchema).length).toBe(1);
     });
 
+    it('should pass through the supplied data to the PersistAsyncSchema', () => {
+      const persistAsyncComponent = component.find(PersistAsyncSchema);
+
+      expect(persistAsyncComponent.prop('schema')).toEqual(schema);
+      expect(persistAsyncComponent.prop('model')).toEqual(model);
+      expect(persistAsyncComponent.prop('errors')).toEqual(errors);
+      expect(persistAsyncComponent.prop('locale')).toEqual(locale);
+      expect(persistAsyncComponent.prop('translations')).toEqual(translations);
+    });
+
     it('should not render basic type schema', () => {
       expect(component.find(BasicTypeSchema).length).toBe(0);
     });
