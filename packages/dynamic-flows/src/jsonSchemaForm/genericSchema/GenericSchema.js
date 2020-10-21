@@ -6,30 +6,27 @@ import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import AllOfSchema from '../allOfSchema';
 import PersistAsyncSchema from '../persistAsyncSchema';
-
-const basicTypes = ['string', 'number', 'integer', 'boolean'];
+import { getSchemaType, schemaType } from './schemaType';
 
 const GenericSchemaForm = (props) => {
   const { schema } = props;
 
-  const isObject = schema.type === 'object';
-  const isOneOf = !!schema.oneOf;
-  const isAllOf = !!schema.allOf;
-  const isPersistAsync = !!schema.persistAsync;
-  const isBasicType =
-    (basicTypes.indexOf(schema.type) >= 0 && !schema.persistAsync) ||
-    !!schema.enum ||
-    !!schema.const;
+  const type = getSchemaType(schema);
 
-  return (
-    <>
-      {isPersistAsync && <PersistAsyncSchema {...props} />}
-      {isBasicType && !isOneOf && <BasicTypeSchema {...props} />}
-      {isObject && <ObjectSchema {...props} />}
-      {isOneOf && <OneOfSchema {...props} />}
-      {isAllOf && <AllOfSchema {...props} />}
-    </>
-  );
+  switch (type) {
+    case schemaType.PERSIST_ASYNC:
+      return <PersistAsyncSchema {...props} />;
+    case schemaType.BASIC:
+      return <BasicTypeSchema {...props} />;
+    case schemaType.OBJECT:
+      return <ObjectSchema {...props} />;
+    case schemaType.ONE_OF:
+      return <OneOfSchema {...props} />;
+    case schemaType.ALL_OF:
+      return <AllOfSchema {...props} />;
+    default:
+      return <></>;
+  }
 };
 
 GenericSchemaForm.propTypes = {
