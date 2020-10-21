@@ -39,7 +39,7 @@ export const basic = () => {
 
   return (
     <JsonSchemaForm
-      host="http://localhost:3000"
+      host="some-host"
       schema={schema}
       model={model}
       errors={errors}
