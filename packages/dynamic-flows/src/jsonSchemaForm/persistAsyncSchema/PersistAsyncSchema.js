@@ -7,7 +7,7 @@ const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const [persistAsyncError, setPersistAsyncError] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
-  const [controller, setController] = useState(null);
+  const [abortController, setAbortController] = useState(null);
 
   if (props.schema.persistAsync.schema.format === 'base64url') {
     // TODO: Add support for base64url format
@@ -15,12 +15,12 @@ const PersistAsyncSchema = (props) => {
   }
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
-    if (controller) {
-      controller.abort();
+    if (abortController) {
+      abortController.abort();
     }
-    const currentController = new AbortController();
-    const { signal } = currentController;
-    setController(currentController);
+    const newAbortController = new AbortController();
+    const { signal } = newAbortController;
+    setAbortController(newAbortController);
 
     setFieldSubmitted(true); // persist async initiated implied the field has been submitted
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
