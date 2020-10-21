@@ -46,7 +46,6 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
         errors={errors}
         onPersistAsyncStart={onPersistAsyncStart}
         onPersistAsyncEnd={onPersistAsyncEnd}
-        onP
       />,
     );
   });

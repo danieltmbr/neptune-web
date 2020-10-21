@@ -1,10 +1,6 @@
 {
   "title": "Object schema",
   "type": "object",
-  "alert": {
-    "context": "warning",
-    "markdown": "### Some markdown goes here\n ```\nconsole.log('hello world')\n```"
-  },
   "properties": {
     "number": {
       "type": "string",
