@@ -1,0 +1,139 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import code from '../../../liveEditorCode/decision.code';
+
+import { Decision, Avatar, Tile, NavigationOption } from '@transferwise/components';
+
+<LiveEditorBlock code={code} scope={{ Decision, Avatar }} display="vertical" />
+<GeneratePropsTable componentName="Decision" />
+
+## Usage
+
+Decision can be used for illustrating major decisions for the user.
+It is encouraged to keep the number of options in `items` under three.
+
+The `type` prop handles the kind of elements to display for each presentation style
+
+### Navigation type
+
+<table className="docs-table table table-condensed">
+  <thead>
+    <tr>
+      <th>Presentation</th>
+      <th>Mobile</th>
+      <th>Desktop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{Decision.Presentation.LIST}</td>
+      <td>
+        <NavigationOption
+          id="navigation-option"
+          name="navigation-option"
+          className="custom-navigation-option"
+          title="Navigation option"
+          content="Button and icon are vertically centered."
+          onClick={() => alert('clicked')}
+          media={
+            <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+              HM
+            </Avatar>
+          }
+          showMediaAtAllSizes={false}
+          showMediaCircle={true}
+        />
+      </td>
+      <td>
+        <NavigationOption
+          id="navigation-option"
+          name="navigation-option"
+          className="custom-navigation-option"
+          title="Navigation option"
+          content="Button and icon are vertically centered."
+          onClick={() => alert('clicked')}
+          media={
+            <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+              HM
+            </Avatar>
+          }
+          showMediaAtAllSizes={false}
+          showMediaCircle={true}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>{Decision.Presentation.LIST_BLOCK}</td>
+      <td>
+        <NavigationOption
+          id="navigation-option"
+          name="navigation-option"
+          className="custom-navigation-option"
+          title="Navigation option"
+          content="Button and icon are vertically centered."
+          onClick={() => alert('clicked')}
+          media={
+            <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+              HM
+            </Avatar>
+          }
+          showMediaAtAllSizes={false}
+          showMediaCircle={true}
+        />
+      </td>
+      <td>
+        <Tile
+          media={
+            <img
+              src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+              alt="illustration"
+              style={{ width: '100%' }}
+            />
+          }
+          size={Tile.Size.LARGE}
+          title="Send money"
+          content="Content"
+          onClick={() => alert('onClick')}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>{Decision.Presentation.LIST_BLOCK_SMALL}</td>
+      <td>
+        <NavigationOption
+          id="navigation-option"
+          name="navigation-option"
+          className="custom-navigation-option"
+          title="Navigation option"
+          content="Button and icon are vertically centered."
+          onClick={() => alert('clicked')}
+          media={
+            <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+              HM
+            </Avatar>
+          }
+          showMediaAtAllSizes={false}
+          showMediaCircle={true}
+        />
+      </td>
+      <td>
+        <Tile
+          media={
+            <img
+              src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+              alt="illustration"
+              style={{ width: '100%' }}
+            />
+          }
+          size={Tile.Size.SMALL}
+          title="Send money"
+          content="Content"
+          onClick={() => alert('onClick')}
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+export const meta = {
+  name: 'Decision',
+};
