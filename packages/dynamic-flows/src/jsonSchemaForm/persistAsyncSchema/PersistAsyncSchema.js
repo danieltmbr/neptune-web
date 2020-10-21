@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Types from 'prop-types';
 import BasicTypeSchema from '../basicTypeSchema';
-import { isStatus2xx } from '../../common/api/utils';
+import { isStatus2xx, isStatus422 } from '../../common/api/utils';
 
 const PersistAsyncSchema = (props) => {
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
@@ -15,16 +15,12 @@ const PersistAsyncSchema = (props) => {
   }
 
   const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
-    if (abortController) {
-      abortController.abort();
-    }
-    const newAbortController = new AbortController();
-    const { signal } = newAbortController;
-    setAbortController(newAbortController);
+    const signal = abortCurrentRequestAndGetNewAbortSignal();
 
-    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
     props.onPersistAsyncStart(requestBody, persistAsyncSpec);
+    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
+
     const response = await fetch(`${props.host}${persistAsyncSpec.url}`, {
       method: persistAsyncSpec.method,
       headers: {
@@ -34,16 +30,37 @@ const PersistAsyncSchema = (props) => {
       signal,
     });
     const responseJson = await response.json();
-    const idPropertyValue = responseJson[props.schema.persistAsync.idProperty]; // doubles as the value and error
-    if (isStatus2xx(response.status) && idPropertyValue) {
-      props.onChange(idPropertyValue, props.schema);
-    } else if (!isStatus2xx(response.status) && idPropertyValue) {
-      setPersistAsyncError(idPropertyValue);
+
+    broadcast(response.status, responseJson);
+    props.onPersistAsyncEnd(responseJson, persistAsyncSpec);
+  };
+
+  const abortCurrentRequestAndGetNewAbortSignal = () => {
+    if (abortController) {
+      abortController.abort();
+    }
+    const newAbortController = new AbortController();
+    setAbortController(newAbortController);
+    return newAbortController.signal;
+  };
+
+  const broadcast = (status, response) => {
+    const { idProperty } = props.schema.persistAsync;
+
+    if (isStatus2xx(status)) {
+      const id = getIdFromResponse(idProperty, response);
+      props.onChange(id, props.schema);
+    } else if (isStatus422(status)) {
+      const error = getErrorFromResponse(idProperty, response);
+      setPersistAsyncError(error);
     } else {
       setPersistAsyncError('Something went wrong, please try again later!');
     }
-    props.onPersistAsyncEnd(responseJson, persistAsyncSpec);
   };
+
+  const getIdFromResponse = (idProperty, response) => response[idProperty];
+
+  const getErrorFromResponse = (errorProperty, response) => response[errorProperty];
 
   const onBlur = () => {
     getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
