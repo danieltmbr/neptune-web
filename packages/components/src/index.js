@@ -54,5 +54,5 @@ export { default as Card } from './card';
 export { default as Summary } from './summary';
 export { default as Switch } from './switch';
 export { default as Tile } from './tile';
-export { default as Picker } from './picker';
+export { default as Decision } from './decision';
 export { default as Nudge } from './nudge';

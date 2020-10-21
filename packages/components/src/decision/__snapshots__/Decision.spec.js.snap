@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Decision when presentation is LIST renders as expected 1`] = `
+<div>
+  <a
+    class="tw-navigation-option media decision tw-option__sm-media"
+    href="#"
+  >
+    <div
+      class="media-left"
+    >
+      <div
+        class="circle circle-sm text-primary circle-inverse"
+      >
+        <div
+          class="tw-avatar tw-avatar--md tw-avatar--thumbnail tw-avatar--light"
+        >
+          <div
+            class="tw-avatar__content"
+          >
+            <img
+              alt="alt"
+              src="image.jpg"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="media-body"
+    >
+      <div
+        class="h5"
+      >
+        title
+      </div>
+      content
+    </div>
+    <div
+      class="media-right"
+    >
+      <span
+        aria-hidden="true"
+        class="tw-icon tw-icon-chevron-up tw-chevron chevron-color right"
+        role="presentation"
+      >
+        <svg
+          fill="currentColor"
+          height="16"
+          width="16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+    </div>
+  </a>
+</div>
+`;
+
+exports[`Decision when presentation is LIST_BLOCK renders as expected 1`] = `
+<div>
+  <div
+    class="tw-size-swapper"
+  >
+    <div
+      class="tw-size-swapper__first_container"
+    >
+      <a
+        class="tw-navigation-option media decision tw-option__sm-media"
+        href="#"
+      >
+        <div
+          class="media-left"
+        >
+          <div
+            class="circle circle-sm text-primary circle-inverse"
+          >
+            <div
+              class="tw-avatar tw-avatar--md tw-avatar--thumbnail tw-avatar--light"
+            >
+              <div
+                class="tw-avatar__content"
+              >
+                <img
+                  alt="alt"
+                  src="image.jpg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="media-body"
+        >
+          <div
+            class="h5"
+          >
+            title
+          </div>
+          content
+        </div>
+        <div
+          class="media-right"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color right"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+    <div
+      class="tw-size-swapper__second_container"
+    >
+      <div
+        class="tw-tile d-flex flex-column text-xs-center tw-tile--large p-y-5 p-x-4"
+      >
+        <div
+          class="tw-tile__media m-x-auto"
+        >
+          <div
+            class="tw-avatar tw-avatar--md tw-avatar--thumbnail tw-avatar--light"
+          >
+            <div
+              class="tw-avatar__content"
+            >
+              <img
+                alt="alt"
+                src="image.jpg"
+              />
+            </div>
+          </div>
+        </div>
+        <a
+          class="tw-tile__link text-no-decoration "
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="h4"
+          >
+            title
+          </span>
+        </a>
+        <div
+          class="tw-tile__content"
+        >
+          content
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Decision when presentation is LIST_BLOCK_SMALL renders as expected 1`] = `
+<div>
+  <div
+    class="tw-size-swapper"
+  >
+    <div
+      class="tw-size-swapper__first_container"
+    >
+      <a
+        class="tw-navigation-option media decision tw-option__sm-media"
+        href="#"
+      >
+        <div
+          class="media-left"
+        >
+          <div
+            class="circle circle-sm text-primary circle-inverse"
+          >
+            <div
+              class="tw-avatar tw-avatar--md tw-avatar--thumbnail tw-avatar--light"
+            >
+              <div
+                class="tw-avatar__content"
+              >
+                <img
+                  alt="alt"
+                  src="image.jpg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="media-body"
+        >
+          <div
+            class="h5"
+          >
+            title
+          </div>
+          content
+        </div>
+        <div
+          class="media-right"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color right"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+    <div
+      class="tw-size-swapper__second_container"
+    >
+      <div
+        class="tw-tile d-flex flex-column text-xs-center tw-tile--small p-a-2"
+      >
+        <div
+          class="tw-tile__media m-x-auto"
+        >
+          <div
+            class="tw-avatar tw-avatar--md tw-avatar--thumbnail tw-avatar--light"
+          >
+            <div
+              class="tw-avatar__content"
+            >
+              <img
+                alt="alt"
+                src="image.jpg"
+              />
+            </div>
+          </div>
+        </div>
+        <a
+          class="tw-tile__link text-no-decoration "
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="h5"
+          >
+            title
+          </span>
+        </a>
+        <div
+          class="tw-tile__content"
+        >
+          content
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

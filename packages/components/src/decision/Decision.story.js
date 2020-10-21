@@ -27,10 +27,12 @@ export const basic = () => {
               </Avatar>
             ),
             block: (
-              <img
-                src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
-                alt=""
-              />
+              <Avatar>
+                <img
+                  src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
+                  alt=""
+                />
+              </Avatar>
             ),
           },
           title: 'Cat jumps and falls',
@@ -49,10 +51,12 @@ export const basic = () => {
               </Avatar>
             ),
             block: (
-              <img
-                src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
-                alt=""
-              />
+              <Avatar>
+                <img
+                  src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
+                  alt=""
+                />
+              </Avatar>
             ),
           },
           title: 'Cat purrs and wakes',
