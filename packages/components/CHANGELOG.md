@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [30.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.1.4...@transferwise/components@30.2.0) (2020-10-21)
+
+
+### Features
+
+* add a min-width and the ability to right align the date lookup calendar ([#637](https://github.com/transferwise/neptune-web/issues/637)) ([9be6fc6](https://github.com/transferwise/neptune-web/commit/9be6fc60b07e5188e8a730108132fcf92ede9493))
+
+
+
+
+
+## [30.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.1.3...@transferwise/components@30.1.4) (2020-10-21)
+
+
+### Bug Fixes
+
+* invalid arguments supplied to oneOf ([#641](https://github.com/transferwise/neptune-web/issues/641)) ([141676a](https://github.com/transferwise/neptune-web/commit/141676a4100e63134835f96df1d79bf35817b242))
+
+
+
+
+
+## [30.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.1.2...@transferwise/components@30.1.3) (2020-10-20)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [30.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.1.1...@transferwise/components@30.1.2) (2020-10-19)
+
+
+### Bug Fixes
+
+* enforce upload validation to handle empty mime type ([#610](https://github.com/transferwise/neptune-web/issues/610)) ([20d20b5](https://github.com/transferwise/neptune-web/commit/20d20b5d020cafc8d483098fd2e10c2f45c30951))
+
+
+
+
+
+## [30.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.1.0...@transferwise/components@30.1.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* chrome inputs font crop ([#612](https://github.com/transferwise/neptune-web/issues/612)) ([bedcc8f](https://github.com/transferwise/neptune-web/commit/bedcc8fc7662d352496d4abe4cc74454dc03b4c1))
+
+
+
+
+
+# [30.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.13...@transferwise/components@30.1.0) (2020-10-15)
+
+
+### Features
+
+* dependencies update([#620](https://github.com/transferwise/neptune-web/issues/620)) ([db7ae74](https://github.com/transferwise/neptune-web/commit/db7ae74c4ce52ef8799478837070f03b04534bbe))
+
+
+
+
+
 ## [30.0.13](https://github.com/transferwise/neptune-web/compare/@transferwise/components@30.0.12...@transferwise/components@30.0.13) (2020-10-13)
 
 **Note:** Version bump only for package @transferwise/components
