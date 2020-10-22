@@ -19,49 +19,47 @@ export const basic = () => {
         {
           media: {
             list: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
-                  alt=""
-                />
+              <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+                HM
               </Avatar>
             ),
             block: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96285661-26e72580-0fd7-11eb-996a-3ff23efe97e7.jpg"
-                  alt=""
-                />
-              </Avatar>
+              <img
+                src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+                alt=""
+              />
             ),
           },
-          title: 'Cat jumps and falls',
-          content:
-            'Cat jumps and falls onto the couch purrs and wakes up in a new dimension filled with kitty litter',
+          title: 'Hank Miller',
+          content: (
+            <p>
+              Click here to send money to Hank Miller. Money will be sent directly to Hank
+              Miller&apos;s multi-currency account.
+            </p>
+          ),
           onClick: action('clicked'),
         },
         {
           media: {
             list: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
-                  alt=""
-                />
+              <Avatar size="md" theme="light" type="initials" className="text-xs-center">
+                HM
               </Avatar>
             ),
             block: (
-              <Avatar>
-                <img
-                  src="https://user-images.githubusercontent.com/16908937/96286355-28fdb400-0fd8-11eb-9b5a-0b72f546667a.jpg"
-                  alt=""
-                />
-              </Avatar>
+              <img
+                src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+                alt=""
+              />
             ),
           },
-          title: 'Cat purrs and wakes',
-          content:
-            'Cat jumps and falls onto the couch purrs and wakes up in a new dimension filled with kitty litter',
+          title: 'Hank Miller',
+          content: (
+            <p>
+              Click here to send money to Hank Miller. Money will be sent directly to Hank
+              Miller&apos;s multi-currency account.
+            </p>
+          ),
           onClick: action('clicked'),
         },
       ]}

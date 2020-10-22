@@ -14,9 +14,13 @@
             <img src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg" />
           ),
         },
-        title: 'Cat jumps and falls',
-        content:
-          'Cat jumps and falls onto the couch purrs and wakes up in a new dimension filled with kitty litter',
+        title: 'Hank Miller',
+        content: (
+          <p>
+            Click here to send money to Hank Miller. Money will be sent directly to Hank Miller's
+            multi-currency account.
+          </p>
+        ),
         onClick: console.log('clicked'),
       },
     ]}
