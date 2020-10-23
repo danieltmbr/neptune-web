@@ -19,9 +19,10 @@ export const basic = () => {
         {
           media: {
             list: (
-              <Avatar size="md" theme="light" type="initials" className="text-xs-center">
-                HM
-              </Avatar>
+              <img
+                src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+                alt=""
+              />
             ),
             block: (
               <img

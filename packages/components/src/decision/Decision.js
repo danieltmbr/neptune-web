@@ -5,17 +5,24 @@ import NavigationOption from '../navigationOption';
 import Tile from '../tile';
 import { elementOfType } from '../common/customProps';
 
+const DecisionType = { NAVIGATION: 'NAVIGATION' };
+const DecisionPresentantion = {
+  LIST: 'LIST',
+  LIST_BLOCK: 'LIST_BLOCK',
+  LIST_BLOCK_SMALL: 'LIST_BLOCK_SMALL',
+};
+
 const Decision = ({ presentation, options, type }) => {
-  if (type === 'NAVIGATION') {
-    if (presentation === 'LIST_BLOCK' || presentation === 'LIST_BLOCK_SMALL') {
-      const small = presentation === 'LIST_BLOCK_SMALL';
+  if (type === DecisionType.NAVIGATION) {
+    const { LIST_BLOCK, LIST_BLOCK_SMALL } = DecisionPresentantion;
+    if (presentation === LIST_BLOCK || LIST_BLOCK_SMALL) {
+      const small = presentation === LIST_BLOCK_SMALL;
       return options.map(({ title, content, media: { list, block }, onClick }, key) => (
         <SizeSwapper
           // eslint-disable-next-line react/no-array-index-key
           key={`${title}${key}`}
           items={[
             <NavigationOption
-              key={`${title}${Math.random()}`}
               complex={false}
               href="#"
               title={title}
@@ -52,32 +59,38 @@ const Decision = ({ presentation, options, type }) => {
       />
     ));
   }
-  return null;
+  return <></>;
 };
 
-Decision.Presentation = {
-  LIST: 'LIST',
-  LIST_BLOCK: 'LIST_BLOCK',
-  LIST_BLOCK_SMALL: 'LIST_BLOCK_SMALL',
-};
+Decision.Presentation = DecisionPresentantion;
+Decision.Type = DecisionType;
 
 Decision.propTypes = {
-  presentation: Types.oneOf(Decision.presentation),
+  /**  Handles the display mode of the component. */
+  presentation: Types.oneOf([
+    Decision.Presentation.LIST,
+    Decision.Presentation.LIST_BLOCK,
+    Decision.Presentation.LIST_BLOCK_SMALL,
+  ]),
+  /**  The options to be rendered. */
   options: Types.arrayOf(
     Types.shape({
       media: Types.shape({
-        list: elementOfType(['Avatar']),
-        block: elementOfType(['Avatar']),
+        list: elementOfType(['Avatar', 'img']),
+        block: elementOfType(['Avatar', 'img']),
       }),
       title: Types.string.isRequired,
-      content: Types.string.isRequired,
+      content: Types.node.isRequired,
       onClick: Types.func.isRequired,
     }),
-  ),
+  ).isRequired,
+  /** The element type to be rendered. */
+  type: Types.oneOf([Decision.Type.NAVIGATION]),
 };
+
 Decision.defaultProps = {
-  presentation: 'LIST',
-  type: 'NAVIGATION',
+  presentation: Decision.Presentation.LIST,
+  type: Decision.Type.NAVIGATION,
 };
 
 export default Decision;

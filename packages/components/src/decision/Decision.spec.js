@@ -34,6 +34,7 @@ describe('Decision', () => {
       const { container } = render(<Decision {...props} />);
       expect(container).toMatchSnapshot();
     });
+
     it('when user clicks on navigation or tike it fires click event ', () => {
       const { getAllByText } = render(<Decision {...props} />);
       const firstOption = props.options[0];
