@@ -1,32 +1,46 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
-import ElementQueries from 'css-element-queries/src/ElementQueries';
+import { Breakpoint } from '../common';
+import useElementWidth from './hooks';
 
-import './SizeSwapper.css';
+const SizeSwapper = ({ items, breakpoints }) => {
+  const elRef = useRef();
+  const [clientWidth] = useElementWidth({ elRef });
 
-const SizeSwapper = ({ items }) => {
-  const ref = useRef(null);
-  useEffect(() => {
-    ElementQueries.listen();
-    ElementQueries.init();
-    return () => {
-      if (ref.current) {
-        ElementQueries.detach(ref.current);
-      }
-    };
-  }, []);
+  let elementVisible = 0;
+  breakpoints.forEach((bp) => {
+    if (clientWidth >= bp) {
+      elementVisible += 1;
+    }
+  });
+
   return (
-    <div className={classNames('tw-size-swapper')} ref={ref}>
-      <div className="tw-size-swapper__first_container">{items[0]}</div>
-      <div className="tw-size-swapper__second_container">{items[1]}</div>
+    <div className={classNames('tw-size-swapper')} ref={elRef}>
+      {items[elementVisible]}
     </div>
   );
 };
 
+SizeSwapper.Breakpoint = Breakpoint;
+
 SizeSwapper.propTypes = {
-  // items is a list of two or more items that will appear at different breakpoints in FIFO order .
+  /** list of two items that will appear at different breakpoints in FIFO order */
   items: Types.arrayOf(Types.element).isRequired,
+  /** breakpoints */
+  breakpoints: Types.arrayOf(
+    Types.oneOf([
+      SizeSwapper.Breakpoint.EXTRA_SMALL,
+      SizeSwapper.Breakpoint.SMALL,
+      SizeSwapper.Breakpoint.MEDIUM,
+      SizeSwapper.Breakpoint.LARGE,
+      SizeSwapper.Breakpoint.EXTRA_LARGE,
+    ]),
+  ),
+};
+
+SizeSwapper.defaultProps = {
+  breakpoints: [Breakpoint.MEDIUM],
 };
 
 export default SizeSwapper;
