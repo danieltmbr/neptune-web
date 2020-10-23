@@ -15,5 +15,10 @@ export const basic = () => {
   ];
   const items = [0, ...breakpoints].map((bp) => <div>Element show from {bp}px</div>);
 
-  return <SizeSwapper items={items} breakpoints={breakpoints} />;
+  return (
+    <>
+      <SizeSwapper items={items} breakpoints={breakpoints} />
+      <SizeSwapper items={items} breakpoints={breakpoints} />
+    </>
+  );
 };

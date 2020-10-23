@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Types from 'prop-types';
-import classNames from 'classnames';
+
 import { Breakpoint } from '../common';
 import useElementWidth from './hooks';
 
@@ -16,7 +16,7 @@ const SizeSwapper = ({ items, breakpoints }) => {
   });
 
   return (
-    <div className={classNames('tw-size-swapper')} ref={elRef}>
+    <div className="tw-size-swapper" ref={elRef}>
       {items[elementVisible]}
     </div>
   );
