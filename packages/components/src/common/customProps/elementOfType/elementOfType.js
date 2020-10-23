@@ -1,12 +1,17 @@
 export const elementOfType = (allowedType) => (props, propName, componentName) => {
   if (props[propName]) {
-    const { displayName } = props[propName].type;
-    if (displayName && allowedType.indexOf(displayName) === -1) {
+    const { type } = props[propName];
+
+    if (!type) {
+      return null;
+    }
+    const propToCheck = type.displayName || type;
+
+    if (allowedType.indexOf(propToCheck) === -1) {
       return new Error(
-        `Invalid prop ${propName} provided to ${componentName}. Only ${allowedType} allowed`,
+        `Invalid prop ${propName} of type ${propToCheck} provided to ${componentName}. Only ${allowedType} allowed`,
       );
     }
   }
-
   return null;
 };
