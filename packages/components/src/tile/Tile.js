@@ -1,6 +1,7 @@
 import React from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
+import { elementOfType } from '../common/customProps';
 
 import { Size } from '../common';
 import KeyCodes from '../common/keyCodes';
@@ -52,17 +53,15 @@ export const Tile = ({ className, title, description, media, size, onClick }) =>
 Tile.Size = Size;
 
 Tile.propTypes = {
-  title: Types.node.isRequired,
-  description: Types.node,
-  media: Types.node,
+  className: Types.string,
+  description: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
+  media: Types.node.isRequired,
   onClick: Types.func.isRequired,
   size: Types.oneOf([Tile.Size.LARGE, Tile.Size.SMALL]),
-  className: Types.string,
+  title: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
 };
 
 Tile.defaultProps = {
-  media: null,
-  description: null,
   className: null,
   size: Tile.Size.LARGE,
 };
