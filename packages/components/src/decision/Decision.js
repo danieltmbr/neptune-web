@@ -17,16 +17,16 @@ const Decision = ({ presentation, options, type }) => {
     const { LIST_BLOCK, LIST_BLOCK_SMALL } = DecisionPresentantion;
     if (presentation === LIST_BLOCK || LIST_BLOCK_SMALL) {
       const small = presentation === LIST_BLOCK_SMALL;
-      return options.map(({ title, content, media: { list, block }, onClick }, key) => (
+      return options.map(({ title, description, media: { list, block }, onClick }, key) => (
         <SizeSwapper
           // eslint-disable-next-line react/no-array-index-key
-          key={`${title}${key}`}
+          key={key}
           items={[
             <NavigationOption
               complex={false}
               href="#"
               title={title}
-              content={content}
+              description={description}
               onClick={onClick}
               media={list}
               showMediaAtAllSizes
@@ -34,7 +34,7 @@ const Decision = ({ presentation, options, type }) => {
             />,
             <Tile
               title={title}
-              content={content}
+              description={description}
               media={block}
               size={small ? Tile.Size.SMALL : null}
               onClick={onClick}
@@ -44,14 +44,14 @@ const Decision = ({ presentation, options, type }) => {
       ));
     }
     // LIST
-    return options.map(({ title, content, media: { list }, onClick }, key) => (
+    return options.map(({ title, description, media: { list }, onClick }, key) => (
       <NavigationOption
         // eslint-disable-next-line react/no-array-index-key
-        key={`${title}${key}`}
+        key={key}
         complex={false}
         href="#"
         title={title}
-        content={content}
+        description={description}
         onClick={onClick}
         media={list}
         showMediaAtAllSizes
@@ -80,7 +80,7 @@ Decision.propTypes = {
         block: elementOfType(['Avatar', 'img']),
       }),
       title: Types.string.isRequired,
-      content: Types.node.isRequired,
+      description: Types.node.isRequired,
       onClick: Types.func.isRequired,
     }),
   ).isRequired,

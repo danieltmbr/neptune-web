@@ -7,7 +7,7 @@ import KeyCodes from '../common/keyCodes';
 
 import './Tile.css';
 
-export const Tile = ({ className, title, content, media, size, onClick }) => {
+export const Tile = ({ className, title, description, media, size, onClick }) => {
   return (
     <div
       className={classNames('tw-tile', 'd-flex', 'flex-column', 'text-xs-center', className, {
@@ -44,7 +44,7 @@ export const Tile = ({ className, title, content, media, size, onClick }) => {
           {title}
         </span>
       </a>
-      <div className="tw-tile__content">{content}</div>
+      <div className="tw-tile__description">{description}</div>
     </div>
   );
 };
@@ -53,7 +53,7 @@ Tile.Size = Size;
 
 Tile.propTypes = {
   title: Types.node.isRequired,
-  content: Types.node,
+  description: Types.node,
   media: Types.node,
   onClick: Types.func.isRequired,
   size: Types.oneOf([Tile.Size.LARGE, Tile.Size.SMALL]),
@@ -62,7 +62,7 @@ Tile.propTypes = {
 
 Tile.defaultProps = {
   media: null,
-  content: null,
+  description: null,
   className: null,
   size: Tile.Size.LARGE,
 };

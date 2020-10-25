@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 const DEBOUNCE_DELAY = 10;
 
-export const useElementWidth = ({ elRef, debouncingDelay = DEBOUNCE_DELAY }) => {
+export const useClientWidth = ({ elRef, debouncingDelay = DEBOUNCE_DELAY }) => {
   const [clientWidth, setClientWidth] = useState(0);
 
   const getClientWidth = () => {

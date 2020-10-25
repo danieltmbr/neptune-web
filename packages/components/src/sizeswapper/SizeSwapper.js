@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 import Types from 'prop-types';
 
 import { Breakpoint } from '../common';
-import useElementWidth from './hooks';
+import useClientWidth from './hooks';
 
 const SizeSwapper = ({ items, breakpoints }) => {
   const elRef = useRef();
-  const [clientWidth] = useElementWidth({ elRef });
+  const [clientWidth] = useClientWidth({ elRef });
 
   let elementVisible = 0;
   breakpoints.forEach((bp) => {

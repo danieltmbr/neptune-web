@@ -9,7 +9,7 @@ describe(Tile, () => {
   const onClick = jest.fn();
   const defaultProps = {
     title: 'Receive money',
-    content: <span>Receive money from friends and familty like a local.</span>,
+    description: <span>Receive money from friends and familty like a local.</span>,
     media: <svg data-testid="illustration" />,
     onClick: () => onClick(),
   };

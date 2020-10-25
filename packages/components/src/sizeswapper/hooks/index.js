@@ -1,1 +1,1 @@
-export { useElementWidth as default } from './useElementWidth';
+export { useClientWidth as default } from './useClientWidth';
