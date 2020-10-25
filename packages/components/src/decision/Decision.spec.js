@@ -11,8 +11,6 @@ const resetClientWidth = (width) => {
 };
 
 const props = {
-  type: Decision.Type.NAVIGATION,
-  presentation: Decision.Presentation.LIST_BLOCK,
   options: [
     {
       media: {
@@ -24,6 +22,8 @@ const props = {
       onClick: jest.fn(),
     },
   ],
+  presentation: Decision.Presentation.LIST_BLOCK,
+  type: Decision.Type.NAVIGATION,
 };
 
 describe('Decision', () => {

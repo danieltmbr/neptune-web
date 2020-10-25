@@ -28,9 +28,9 @@ exports[`Decision when presentation is LIST renders Navigation Option passed fir
         </span>
       </a>
       <div
-        class="tw-tile__content"
+        class="tw-tile__description"
       >
-        content
+        description
       </div>
     </div>
   </div>
@@ -65,9 +65,9 @@ exports[`Decision when presentation is LIST renders Navigation Option under firs
         </span>
       </a>
       <div
-        class="tw-tile__content"
+        class="tw-tile__description"
       >
-        content
+        description
       </div>
     </div>
   </div>
@@ -108,7 +108,7 @@ exports[`Decision when presentation is LIST_BLOCK renders Navigation Option unde
         >
           title
         </div>
-        content
+        description
       </div>
       <div
         class="media-right"
@@ -170,7 +170,7 @@ exports[`Decision when presentation is LIST_BLOCK renders Tile passed first brea
         >
           title
         </div>
-        content
+        description
       </div>
       <div
         class="media-right"
@@ -226,9 +226,9 @@ exports[`Decision when presentation is LIST_BLOCK_SMALL renders Navigation Optio
         </span>
       </a>
       <div
-        class="tw-tile__content"
+        class="tw-tile__description"
       >
-        content
+        description
       </div>
     </div>
   </div>
@@ -263,9 +263,9 @@ exports[`Decision when presentation is LIST_BLOCK_SMALL renders Small Tile passe
         </span>
       </a>
       <div
-        class="tw-tile__content"
+        class="tw-tile__description"
       >
-        content
+        description
       </div>
     </div>
   </div>

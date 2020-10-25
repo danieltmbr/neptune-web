@@ -12,32 +12,32 @@ const DecisionPresentantion = {
   LIST_BLOCK_SMALL: 'LIST_BLOCK_SMALL',
 };
 
-const Decision = ({ presentation, options, type }) => {
+const Decision = ({ options, presentation, type }) => {
   if (type === DecisionType.NAVIGATION) {
     const { LIST_BLOCK, LIST_BLOCK_SMALL } = DecisionPresentantion;
     if (presentation === LIST_BLOCK || LIST_BLOCK_SMALL) {
       const small = presentation === LIST_BLOCK_SMALL;
-      return options.map(({ title, description, media: { list, block }, onClick }, key) => (
+      return options.map(({ description, media: { block, list }, onClick, title }, key) => (
         <SizeSwapper
           // eslint-disable-next-line react/no-array-index-key
           key={key}
           items={[
             <NavigationOption
               complex={false}
+              content={description}
               href="#"
-              title={title}
-              description={description}
-              onClick={onClick}
               media={list}
+              onClick={onClick}
               showMediaAtAllSizes
               showMediaCircle
+              title={title}
             />,
             <Tile
-              title={title}
               description={description}
               media={block}
-              size={small ? Tile.Size.SMALL : null}
               onClick={onClick}
+              size={small ? Tile.Size.SMALL : null}
+              title={title}
             />,
           ]}
         />
@@ -51,7 +51,7 @@ const Decision = ({ presentation, options, type }) => {
         complex={false}
         href="#"
         title={title}
-        description={description}
+        content={description}
         onClick={onClick}
         media={list}
         showMediaAtAllSizes
@@ -66,25 +66,26 @@ Decision.Presentation = DecisionPresentantion;
 Decision.Type = DecisionType;
 
 Decision.propTypes = {
+  /**  The options to be rendered. */
+  options: Types.arrayOf(
+    Types.shape({
+      media: Types.shape({
+        block: elementOfType(['Avatar', 'img']).isRequired,
+        list: elementOfType(['Avatar', 'img']).isRequired,
+      }),
+      title: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
+      description: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
+      onClick: Types.func.isRequired,
+    }),
+  ).isRequired,
   /**  Handles the display mode of the component. */
   presentation: Types.oneOf([
     Decision.Presentation.LIST,
     Decision.Presentation.LIST_BLOCK,
     Decision.Presentation.LIST_BLOCK_SMALL,
   ]),
-  /**  The options to be rendered. */
-  options: Types.arrayOf(
-    Types.shape({
-      media: Types.shape({
-        list: elementOfType(['Avatar', 'img']),
-        block: elementOfType(['Avatar', 'img']),
-      }),
-      title: Types.string.isRequired,
-      description: Types.node.isRequired,
-      onClick: Types.func.isRequired,
-    }),
-  ).isRequired,
-  /** The element type to be rendered. */
+
+  /** The element type to be rendered in the list. */
   type: Types.oneOf([Decision.Type.NAVIGATION]),
 };
 
