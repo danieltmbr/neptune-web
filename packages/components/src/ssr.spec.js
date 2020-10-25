@@ -68,6 +68,7 @@ describe('Server side rendering', () => {
     badge: <svg />,
     link: 'link',
     href: '#',
+    description: 'description',
   };
 
   // Override props in case of name collision.

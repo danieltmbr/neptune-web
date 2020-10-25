@@ -24,11 +24,9 @@ exports[`Tile matches snapshot when regular size 1`] = `
       </span>
     </a>
     <div
-      class="tw-tile__content"
+      class="tw-tile__description"
     >
-      <span>
-        Receive money from friends and familty like a local.
-      </span>
+      Receive money from friends and familty like a local
     </div>
   </div>
 </DocumentFragment>
@@ -58,11 +56,9 @@ exports[`Tile matches snapshot when small size 1`] = `
       </span>
     </a>
     <div
-      class="tw-tile__content"
+      class="tw-tile__description"
     >
-      <span>
-        Receive money from friends and familty like a local.
-      </span>
+      Receive money from friends and familty like a local
     </div>
   </div>
 </DocumentFragment>
