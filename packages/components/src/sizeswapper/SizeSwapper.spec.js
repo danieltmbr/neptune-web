@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import SizeSwapper from '.';
 
@@ -10,16 +10,18 @@ const resetClientWidth = (width) => {
 };
 const breakpoints = [SizeSwapper.Breakpoint.SMALL, SizeSwapper.Breakpoint.MEDIUM];
 
+jest.useFakeTimers();
+
 describe('SizeSwapper', () => {
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
 
-  it('switches elements according to breakpoints', () => {
+  it('switches elements according to breakpoints', async () => {
     const { getByText, queryByText } = render(
       <SizeSwapper
-        items={[<>element1</>, <>element2</>, <>element3</>]}
         breakpoints={breakpoints}
+        items={[<>element1</>, <>element2</>, <>element3</>]}
       />,
     );
 
@@ -29,20 +31,26 @@ describe('SizeSwapper', () => {
 
     resetClientWidth(breakpoints[0]);
     fireEvent(window, new Event('resize'));
-    expect(getByText('element2')).toBeInTheDocument();
-    expect(queryByText('element1')).not.toBeInTheDocument();
-    expect(queryByText('element3')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('element2')).toBeInTheDocument();
+      expect(queryByText('element1')).not.toBeInTheDocument();
+      expect(queryByText('element3')).not.toBeInTheDocument();
+    });
 
     resetClientWidth(breakpoints[1]);
     fireEvent(window, new Event('resize'));
-    expect(getByText('element3')).toBeInTheDocument();
-    expect(queryByText('element1')).not.toBeInTheDocument();
-    expect(queryByText('element2')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('element3')).toBeInTheDocument();
+      expect(queryByText('element1')).not.toBeInTheDocument();
+      expect(queryByText('element2')).not.toBeInTheDocument();
+    });
 
     resetClientWidth(breakpoints[0] - 1);
     fireEvent(window, new Event('resize'));
-    expect(getByText('element1')).toBeInTheDocument();
-    expect(queryByText('element2')).not.toBeInTheDocument();
-    expect(queryByText('element3')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('element1')).toBeInTheDocument();
+      expect(queryByText('element2')).not.toBeInTheDocument();
+      expect(queryByText('element3')).not.toBeInTheDocument();
+    });
   });
 });

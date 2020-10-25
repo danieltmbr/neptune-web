@@ -4,9 +4,9 @@ import Types from 'prop-types';
 import { Breakpoint } from '../common';
 import useClientWidth from './hooks';
 
-const SizeSwapper = ({ items, breakpoints }) => {
+const SizeSwapper = ({ breakpoints, items, debouncingDelay }) => {
   const elRef = useRef();
-  const [clientWidth] = useClientWidth({ elRef });
+  const [clientWidth] = useClientWidth({ elRef, debouncingDelay });
 
   let elementVisible = 0;
   breakpoints.forEach((bp) => {
@@ -25,8 +25,6 @@ const SizeSwapper = ({ items, breakpoints }) => {
 SizeSwapper.Breakpoint = Breakpoint;
 
 SizeSwapper.propTypes = {
-  /** list of two items that will appear at different breakpoints in FIFO order */
-  items: Types.arrayOf(Types.element).isRequired,
   /** breakpoints */
   breakpoints: Types.arrayOf(
     Types.oneOf([
@@ -37,10 +35,15 @@ SizeSwapper.propTypes = {
       SizeSwapper.Breakpoint.EXTRA_LARGE,
     ]),
   ),
+  /** Applied to window resize event, determine the frequency of the resize callback call. */
+  debouncingDelay: Types.number,
+  /** list of two items that will appear at different breakpoints in FIFO order */
+  items: Types.arrayOf(Types.element).isRequired,
 };
 
 SizeSwapper.defaultProps = {
   breakpoints: [Breakpoint.MEDIUM],
+  debouncingDelay: useClientWidth.DEBOUNCE_DELAY,
 };
 
 export default SizeSwapper;
