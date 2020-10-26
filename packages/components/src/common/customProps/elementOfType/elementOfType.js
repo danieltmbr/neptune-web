@@ -7,13 +7,13 @@ const elementOfTypeChecker = (allowedType) => (props, propName, componentName) =
     const { type } = prop;
 
     if (!type) {
-      return errorReturn({ propName, propToCheck: prop, componentName, allowedType });
+      return errorReturn({ propName, typeToCheck: prop, componentName, allowedType });
     }
-    const propToCheck = type.displayName || type;
-
-    if (isString(propToCheck)) {
-      if (allowedType.indexOf(propToCheck) === -1) {
-        return errorReturn({ propName, propToCheck, componentName, allowedType });
+    const typeToCheck = type.displayName || type;
+    // This can be improved by checking against the actual component decalration but we need to investigate which way is the most performant.
+    if (isString(typeToCheck)) {
+      if (allowedType.indexOf(typeToCheck) === -1) {
+        return errorReturn({ propName, typeToCheck, componentName, allowedType });
       }
     }
   }
@@ -21,22 +21,21 @@ const elementOfTypeChecker = (allowedType) => (props, propName, componentName) =
   return null;
 };
 
-const errorReturn = ({ propName, propToCheck, componentName, allowedType }) =>
+export const errorReturn = ({ propName, typeToCheck, componentName, allowedType }) =>
   new Error(
-    `Invalid prop ${propName} of type ${propToCheck} provided to ${componentName}. Only ${allowedType} allowed`,
+    `Invalid prop ${propName} of type ${typeToCheck} provided to ${componentName}. Only ${allowedType} allowed`,
   );
 
 const createChainableTypeChecker = (validate) => (allowedType) => {
-  const checkType = (isRequired, props, propName, componentName, location) => {
+  const checkType = (isRequired, props, propName, componentName) => {
     const prop = props[propName];
-
     if (prop == null) {
       if (isRequired) {
         return new Error(`Required ${propName} was not specified in ${componentName}.`);
       }
       return null;
     }
-    return validate(allowedType)(props, propName, componentName, location);
+    return validate(allowedType)(props, propName, componentName);
   };
 
   const chainedCheckType = checkType.bind(null, false);
