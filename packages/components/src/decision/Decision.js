@@ -67,7 +67,7 @@ Decision.Presentation = DecisionPresentantion;
 Decision.Type = DecisionType;
 
 Decision.propTypes = {
-  /**  The options to be rendered. */
+  /**  The options to be rendered */
   options: Types.arrayOf(
     Types.shape({
       media: Types.shape({
@@ -80,14 +80,14 @@ Decision.propTypes = {
       href: requiredIf(Types.string, (props) => props.type === Decision.Type.NAVIGATION),
     }),
   ).isRequired,
-  /**  Handles the display mode of the component. */
+  /**  Handles the display mode of the component */
   presentation: Types.oneOf([
     Decision.Presentation.LIST,
     Decision.Presentation.LIST_BLOCK,
     Decision.Presentation.LIST_BLOCK_SMALL,
   ]),
 
-  /** The element type to be rendered in the list. */
+  /** The element type to be rendered in the list */
   type: Types.oneOf([Decision.Type.NAVIGATION]),
 };
 

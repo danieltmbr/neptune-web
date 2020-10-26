@@ -35,17 +35,18 @@ describe('Decision', () => {
   });
 
   let container;
+
   describe(`when presentation is ${Decision.Presentation.LIST_BLOCK}`, () => {
     beforeEach(() => {
       resetClientWidth(500);
       ({ container } = render(<Decision {...props} />));
     });
 
-    it('renders Navigation Option before first breakpoint', () => {
+    it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
     });
 
-    it('renders Tile after first breakpoint', async () => {
+    it('renders Tile after breakpoint', async () => {
       resetClientWidth(900);
       fireEvent(window, new Event('resize'));
       await waitFor(() => {
@@ -63,11 +64,11 @@ describe('Decision', () => {
       ));
     });
 
-    it('renders Navigation Option before first breakpoint', () => {
+    it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
     });
 
-    it('renders Small Tile after first breakpoint', async () => {
+    it('renders Small Tile after breakpoint', async () => {
       resetClientWidth(900);
       fireEvent(window, new Event('resize'));
       await waitFor(() => {
@@ -83,11 +84,11 @@ describe('Decision', () => {
       ({ container } = render(<Decision {...props} presentation={Decision.Presentation.LIST} />));
     });
 
-    it('renders Navigation Option under first breakpoint', () => {
+    it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
     });
 
-    it('renders Navigation Option after first breakpoint', async () => {
+    it('renders Navigation Option after breakpoint', async () => {
       resetClientWidth(900);
       fireEvent(window, new Event('resize'));
       await waitFor(() => {
