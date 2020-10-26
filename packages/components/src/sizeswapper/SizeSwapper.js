@@ -8,16 +8,9 @@ const SizeSwapper = ({ breakpoints, items, debouncingDelay }) => {
   const elRef = useRef();
   const [clientWidth] = useClientWidth({ elRef, debouncingDelay });
 
-  let elementVisible = 0;
-  breakpoints.forEach((bp) => {
-    if (clientWidth >= bp) {
-      elementVisible += 1;
-    }
-  });
-
   return (
     <div className="tw-size-swapper" ref={elRef}>
-      {items[elementVisible]}
+      {items[breakpoints.filter((bp) => clientWidth >= bp).length]}
     </div>
   );
 };
@@ -25,7 +18,7 @@ const SizeSwapper = ({ breakpoints, items, debouncingDelay }) => {
 SizeSwapper.Breakpoint = Breakpoint;
 
 SizeSwapper.propTypes = {
-  /** breakpoints */
+  /** Breakpoints at which elements will be swapped */
   breakpoints: Types.arrayOf(
     Types.oneOf([
       SizeSwapper.Breakpoint.EXTRA_SMALL,
@@ -35,9 +28,9 @@ SizeSwapper.propTypes = {
       SizeSwapper.Breakpoint.EXTRA_LARGE,
     ]),
   ),
-  /** Applied to window resize event, determine the frequency of the resize callback call. */
+  /** Applied to window resize event, determine the frequency of the resize callback call */
   debouncingDelay: Types.number,
-  /** list of two items that will appear at different breakpoints in FIFO order */
+  /** List of items that will appear at different breakpoints in FIFO order */
   items: Types.arrayOf(Types.element).isRequired,
 };
 

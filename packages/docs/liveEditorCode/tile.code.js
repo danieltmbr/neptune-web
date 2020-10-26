@@ -1,5 +1,6 @@
 () => (
   <Tile
+    description="Click here to be redirected to transferflow."
     media={
       <img
         src="https://transferwise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
@@ -7,9 +8,8 @@
         style={{ width: '100%' }}
       />
     }
+    onClick={() => alert('onClick')}
     size={Tile.Size.LARGE}
     title="Send money"
-    content="Click here to be redirected to transferflow."
-    onClick={() => alert('onClick')}
   />
 );

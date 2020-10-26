@@ -1,80 +1,101 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import Decision from '.';
 import Avatar from '../avatar';
 
-const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
-const resetClientWidth = (width) => {
-  Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, value: width });
-};
-
-const props = {
-  options: [
-    {
-      media: {
-        list: <Avatar type="initials">HM</Avatar>,
-        block: <img src="img.jpg" alt="alt" />,
-      },
-      title: 'title',
-      description: 'description',
-      onClick: jest.fn(),
-    },
-  ],
-  presentation: Decision.Presentation.LIST_BLOCK,
-  type: Decision.Type.NAVIGATION,
-};
-
 describe('Decision', () => {
+  const props = {
+    options: [
+      {
+        media: {
+          list: <Avatar type="initials">HM</Avatar>,
+          block: <img src="img.jpg" alt="alt" />,
+        },
+        title: 'title',
+        description: 'description',
+        onClick: jest.fn(),
+      },
+    ],
+    presentation: Decision.Presentation.LIST_BLOCK,
+    type: Decision.Type.NAVIGATION,
+  };
+
+  const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
+  const resetClientWidth = (width) => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+      configurable: true,
+      value: width,
+    });
+  };
+
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
 
+  let container;
   describe(`when presentation is ${Decision.Presentation.LIST_BLOCK}`, () => {
-    let container;
     beforeEach(() => {
+      resetClientWidth(500);
       ({ container } = render(<Decision {...props} />));
     });
 
-    it('renders Navigation Option under first breakpoint', () => {
-      expect(container).toMatchSnapshot();
+    it('renders Navigation Option before first breakpoint', () => {
+      expect(getNavigationOption()).toBeInTheDocument();
     });
-    it('renders Tile passed first breakpoint', () => {
+
+    it('renders Tile after first breakpoint', async () => {
       resetClientWidth(900);
-      expect(container).toMatchSnapshot();
+      fireEvent(window, new Event('resize'));
+      await waitFor(() => {
+        expect(getTile()).toBeInTheDocument();
+        expect(getTile()).toHaveClass('tw-tile--large');
+      });
     });
   });
 
   describe(`when presentation is ${Decision.Presentation.LIST_BLOCK_SMALL}`, () => {
-    let container;
     beforeEach(() => {
+      resetClientWidth(500);
       ({ container } = render(
         <Decision {...props} presentation={Decision.Presentation.LIST_BLOCK_SMALL} />,
       ));
     });
 
-    it('renders Navigation Option under first breakpoint', () => {
-      expect(container).toMatchSnapshot();
+    it('renders Navigation Option before first breakpoint', () => {
+      expect(getNavigationOption()).toBeInTheDocument();
     });
-    it('renders Small Tile passed first breakpoint', () => {
+
+    it('renders Small Tile after first breakpoint', async () => {
       resetClientWidth(900);
-      expect(container).toMatchSnapshot();
+      fireEvent(window, new Event('resize'));
+      await waitFor(() => {
+        expect(getTile()).toBeInTheDocument();
+        expect(getTile()).toHaveClass('tw-tile--small');
+      });
     });
   });
 
   describe(`when presentation is ${Decision.Presentation.LIST}`, () => {
-    let container;
     beforeEach(() => {
+      resetClientWidth(500);
       ({ container } = render(<Decision {...props} presentation={Decision.Presentation.LIST} />));
     });
 
     it('renders Navigation Option under first breakpoint', () => {
-      expect(container).toMatchSnapshot();
+      expect(getNavigationOption()).toBeInTheDocument();
     });
-    it('renders Navigation Option passed first breakpoint', () => {
+
+    it('renders Navigation Option after first breakpoint', async () => {
       resetClientWidth(900);
-      expect(container).toMatchSnapshot();
+      fireEvent(window, new Event('resize'));
+      await waitFor(() => {
+        expect(getNavigationOption()).toBeInTheDocument();
+      });
     });
   });
+
+  const getNavigationOption = () => container.querySelector('button.tw-navigation-option');
+  const getTile = () => container.querySelector('.tw-tile');
 });

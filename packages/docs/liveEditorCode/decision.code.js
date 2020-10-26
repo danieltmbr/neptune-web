@@ -1,7 +1,5 @@
 () => (
   <Decision
-    type="NAVIGATION"
-    presentation={Decision.Presentation.LIST_BLOCK}
     options={[
       {
         media: {
@@ -24,5 +22,7 @@
         onClick: console.log('clicked'),
       },
     ]}
+    type={Decision.Type.NAVIGATION}
+    presentation={Decision.Presentation.LIST_BLOCK}
   />
 );

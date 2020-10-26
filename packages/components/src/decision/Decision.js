@@ -1,5 +1,6 @@
 import React from 'react';
 import Types from 'prop-types';
+import requiredIf from 'react-required-if';
 import SizeSwapper from '../sizeswapper';
 import NavigationOption from '../navigationOption';
 import Tile from '../tile';
@@ -17,7 +18,7 @@ const Decision = ({ options, presentation, type }) => {
     const { LIST_BLOCK, LIST_BLOCK_SMALL } = DecisionPresentantion;
     if (presentation === LIST_BLOCK || LIST_BLOCK_SMALL) {
       const small = presentation === LIST_BLOCK_SMALL;
-      return options.map(({ description, media: { block, list }, onClick, title }, key) => (
+      return options.map(({ description, href, media: { block, list }, onClick, title }, key) => (
         <SizeSwapper
           // eslint-disable-next-line react/no-array-index-key
           key={key}
@@ -25,7 +26,7 @@ const Decision = ({ options, presentation, type }) => {
             <NavigationOption
               complex={false}
               content={description}
-              href="#"
+              href={href}
               media={list}
               onClick={onClick}
               showMediaAtAllSizes
@@ -76,6 +77,7 @@ Decision.propTypes = {
       title: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
       description: Types.oneOfType([elementOfType(['Message']), Types.string]).isRequired,
       onClick: Types.func.isRequired,
+      href: requiredIf(Types.string, (props) => props.type === Decision.Type.NAVIGATION),
     }),
   ).isRequired,
   /**  Handles the display mode of the component. */
