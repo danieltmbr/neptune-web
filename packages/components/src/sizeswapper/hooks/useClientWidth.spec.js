@@ -3,6 +3,8 @@ import { act, renderHook } from '@testing-library/react-hooks';
 
 import { useClientWidth } from './useClientWidth';
 
+jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
+
 describe('useClientWidth', () => {
   describe('when invalid ref is provided', () => {
     it('returns 0', () => {
@@ -35,7 +37,6 @@ describe('useClientWidth', () => {
         elRef.current.clientWidth = 700;
         fireEvent(window, new Event('resize'));
       });
-
       expect(result.current).toEqual([700]);
     });
   });
