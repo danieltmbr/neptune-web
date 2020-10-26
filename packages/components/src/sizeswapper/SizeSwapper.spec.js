@@ -4,15 +4,16 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import SizeSwapper from '.';
 
-const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
-const resetClientWidth = (width) => {
-  Object.defineProperty(HTMLElement.prototype, 'clientWidth', { configurable: true, value: width });
-};
-const breakpoints = [SizeSwapper.Breakpoint.SMALL, SizeSwapper.Breakpoint.MEDIUM];
-
-jest.useFakeTimers();
-
 describe('SizeSwapper', () => {
+  const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
+  const resetClientWidth = (width) => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+      configurable: true,
+      value: width,
+    });
+  };
+  const breakpoints = [SizeSwapper.Breakpoint.SMALL, SizeSwapper.Breakpoint.MEDIUM];
+
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
