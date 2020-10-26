@@ -1,25 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
 
-const DEBOUNCE_DELAY = 10;
+const DEBOUNCE_DELAY = 5;
 
 export const useClientWidth = ({ elRef, debouncingDelay = DEBOUNCE_DELAY }) => {
-  if (!elRef && !elRef.current) {
-    return [null];
-  }
-  const [clientWidth, setClientWidth] = useState(0);
+  const [clientWidth, setClientWidth] = useState(null);
 
-  const getClientWidth = () => {
-    setClientWidth(elRef.current.clientWidth);
+  const updateClientWidth = () => {
+    if (elRef && elRef.current) {
+      setClientWidth(elRef.current.clientWidth);
+    }
   };
 
-  useEffect(() => {
-    // Display right element on load.
-    getClientWidth();
-    // Only call the event handler after the event has stopped firing for a certain amount of time.
-    window.addEventListener('resize', debounce(getClientWidth, debouncingDelay));
+  useLayoutEffect(() => {
+    window.addEventListener('resize', debounce(updateClientWidth, debouncingDelay));
 
-    return () => window.removeEventListener('resize', getClientWidth);
+    updateClientWidth();
+
+    return () => window.removeEventListener('resize', updateClientWidth);
   }, []);
 
   return [clientWidth];
